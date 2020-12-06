@@ -6,10 +6,71 @@
 //
 
 import SwiftUI
+import FBSDKLoginKit
 
 struct ContentView: View {
+    @ObservedObject var fbmanager = UserLoginManager()
+    @State fileprivate var showAlert = false
+    @State fileprivate var errorMessage: String = ""
+
     var body: some View {
-        Text("Hello, world!")
+        VStack() {
+            Text("Hello, world!")
+            Button("Facebook Login", action: {
+                self.fbmanager.facebookLogin(parent: self)
+            })
+            Button("Facebook Logout", action: {
+                self.fbmanager.facebookLogout()
+            })
+            .alert(isPresented: $showAlert) { () -> Alert in
+                if errorMessage.isEmpty {
+                    return Alert(title: Text("Login Success"))
+
+                } else {
+                    let alert = Alert(title: Text("Login Failed"),
+                          message: Text(self.errorMessage),
+                          dismissButton: .default(Text("OK")))
+                    return alert;
+                }
+             }
+        }
+    }
+}
+
+class UserLoginManager: ObservableObject {
+    let loginManager = LoginManager()
+    
+    func facebookLogout() {
+        loginManager.logOut()
+    }
+    
+    func facebookLogin(parent: ContentView) {
+        loginManager.logIn(permissions: [.email], viewController: nil) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                parent.errorMessage = error.localizedDescription
+                parent.showAlert = true
+            case .cancelled:
+                parent.errorMessage = "Need to login to use the application"
+                parent.showAlert = true
+            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                if declinedPermissions.contains(FBSDKCoreKit.Permission.email) {
+                    parent.errorMessage = "Need to permit to read email address to use the application"
+                    parent.showAlert = true
+                } else {
+                    print("Logged in! \(grantedPermissions) \(declinedPermissions) \(accessToken)")
+                    GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, email"]).start(completionHandler: { (connection, result, error) -> Void in
+                        if (error == nil){
+                            let fbDetails = result as! NSDictionary
+                            print(fbDetails)
+                        }
+                    })
+                    
+                    parent.errorMessage = ""
+                    parent.showAlert = true
+                }
+            }
+        }
     }
 }
 

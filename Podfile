@@ -6,6 +6,8 @@ target 'mfsa-ios' do
   use_frameworks!
 
   # Pods for mfsa-ios
+  pod 'AWSCognito'
+  pod 'FBSDKLoginKit'
 
   target 'mfsa-iosTests' do
     inherit! :search_paths
