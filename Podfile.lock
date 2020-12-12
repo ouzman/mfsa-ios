@@ -1,7 +1,16 @@
 PODS:
-  - AWSCognito (2.19.1):
+  - AWSAuthCore (2.19.1):
     - AWSCore (= 2.19.1)
+  - AWSCognitoIdentityProvider (2.19.1):
+    - AWSCognitoIdentityProviderASF (= 2.19.1)
+    - AWSCore (= 2.19.1)
+  - AWSCognitoIdentityProviderASF (2.19.1)
   - AWSCore (2.19.1)
+  - AWSMobileClient (2.19.1):
+    - AWSAuthCore (= 2.19.1)
+    - AWSCognitoIdentityProvider (= 2.19.1)
+    - AWSCognitoIdentityProviderASF (= 2.19.1)
+    - AWSCore (= 2.19.1)
   - FBSDKCoreKit (8.2.0):
     - FBSDKCoreKit/Basics (= 8.2.0)
     - FBSDKCoreKit/Core (= 8.2.0)
@@ -14,22 +23,28 @@ PODS:
     - FBSDKCoreKit (~> 8.2.0)
 
 DEPENDENCIES:
-  - AWSCognito
+  - AWSMobileClient
   - FBSDKLoginKit
 
 SPEC REPOS:
   trunk:
-    - AWSCognito
+    - AWSAuthCore
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
     - AWSCore
+    - AWSMobileClient
     - FBSDKCoreKit
     - FBSDKLoginKit
 
 SPEC CHECKSUMS:
-  AWSCognito: f50de600804941d083af37a7568905f31a774727
+  AWSAuthCore: 387c5e3482edbbb0fe754fa110a2a0203c783432
+  AWSCognitoIdentityProvider: e6932c709d3e0b234128aeb5f2052c9bf1032d8d
+  AWSCognitoIdentityProviderASF: 749f58b75e69f7f0144b9d38539525562b843d34
   AWSCore: 55c154ae27efc5c98bdc30a0eeea5a35d10a2ab5
+  AWSMobileClient: b908cada3c35da9cfe5b4ff9947fcf70142495e7
   FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
   FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
 
-PODFILE CHECKSUM: 12b3c1d65ed3b28ce1c424aff1430ece26a116c9
+PODFILE CHECKSUM: 8972bf76d5801c6199eeab65c88c96f8d32a2d5f
 
 COCOAPODS: 1.10.0

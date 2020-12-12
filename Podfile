@@ -6,7 +6,7 @@ target 'mfsa-ios' do
   use_frameworks!
 
   # Pods for mfsa-ios
-  pod 'AWSCognito'
+  pod 'AWSMobileClient'
   pod 'FBSDKLoginKit'
 
   target 'mfsa-iosTests' do

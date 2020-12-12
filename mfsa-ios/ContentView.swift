@@ -7,6 +7,8 @@
 
 import SwiftUI
 import FBSDKLoginKit
+import AWSCore
+import AWSMobileClient
 
 struct ContentView: View {
     @ObservedObject var fbmanager = UserLoginManager()
@@ -24,7 +26,9 @@ struct ContentView: View {
             })
             .alert(isPresented: $showAlert) { () -> Alert in
                 if errorMessage.isEmpty {
-                    return Alert(title: Text("Login Success"))
+                    let alert = Alert(title: Text("Login Success"))
+                    
+                    return alert
 
                 } else {
                     let alert = Alert(title: Text("Login Failed"),
@@ -66,8 +70,21 @@ class UserLoginManager: ObservableObject {
                         }
                     })
                     
+                    
+                    AWSMobileClient
+                        .default()
+                        .federatedSignIn(providerName: IdentityProvider.facebook.rawValue,
+                                         token: accessToken.tokenString) { (userState, error)  in
+                        if let error = error {
+                            print("Federated Sign In failed: \(error.localizedDescription)")
+                        } else {
+                            print("\(userState!)")
+                        }
+                    }
+                    
                     parent.errorMessage = ""
                     parent.showAlert = true
+
                 }
             }
         }
