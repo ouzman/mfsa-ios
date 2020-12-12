@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct LoginView: View {
+    @ObservedObject var viewModel: LoginViewModel
+
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
+        let alertActive = Binding<Bool>(
+            get: { self.viewModel.errorAlertDetails != nil },
+            set: { if !$0 { self.viewModel.errorAlertDetails = nil } }
+        )
         VStack(alignment: .center, spacing: nil, content: {
             Spacer()
 
@@ -24,14 +33,18 @@ struct LoginView: View {
             .padding()
             
             self.loginButtons
-                .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity,
-                       minHeight: 0, idealHeight: 80, maxHeight: 0,
+                .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity,
+                       maxHeight: 80,
                        alignment: .center)
                 .padding(.all)
                 .padding(.bottom, 20)
         })
         .edgesIgnoringSafeArea(.all)
-
+        .alert(isPresented: alertActive, content: {
+            Alert(title: Text(self.viewModel.errorAlertDetails!.title),
+                  message: Text(self.viewModel.errorAlertDetails!.details),
+                  dismissButton: .default(Text("OK")))
+        })
     }
     
     var titleSection: some View {
@@ -59,7 +72,9 @@ struct LoginView: View {
     
     var loginButtons: some View {
         VStack {
-            Button("Facebook", action: { })
+            Button("Facebook", action: {
+                viewModel.facebookLogin()
+            })
                 .foregroundColor(.white)
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity,
                        minHeight: 0, idealHeight: 100, maxHeight: .infinity,
@@ -78,11 +93,11 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
    static var previews: some View {
       Group {
-         LoginView()
+         LoginView(viewModel: LoginViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
             .previewDisplayName("iPhone SE")
 
-        LoginView()
+        LoginView(viewModel: LoginViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
             .previewDisplayName("iPhone 12 Pro Max")
       }
