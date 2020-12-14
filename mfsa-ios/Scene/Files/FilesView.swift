@@ -9,7 +9,19 @@ import SwiftUI
 
 struct FilesView: View {
     var body: some View {
-        Text("Hello, World!")
+        TabView {
+            MyFilesView()
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("My Files")
+                }
+            
+            SharedFilesView()
+                .tabItem {
+                    Image(systemName: "person.2")
+                    Text("Shared Files")
+                }
+        }
             .navigationBarHidden(false)
             .navigationBarBackButtonHidden(true)
     }

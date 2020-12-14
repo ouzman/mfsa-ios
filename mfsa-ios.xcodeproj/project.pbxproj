@@ -15,6 +15,8 @@
 		F410897A25858302000B9265 /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410897925858302000B9265 /* FilesView.swift */; };
 		F410897F2586511B000B9265 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410897E2586511B000B9265 /* MainView.swift */; };
 		F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE08258814A1006205DE /* AppStateHolder.swift */; };
+		F470FE2F2588264F006205DE /* MyFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE2E2588264F006205DE /* MyFilesView.swift */; };
+		F470FE3425882661006205DE /* SharedFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE3325882661006205DE /* SharedFilesView.swift */; };
 		F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */; };
 		F480258B257CFD7800EE2040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258A257CFD7800EE2040 /* Assets.xcassets */; };
 		F480258E257CFD7800EE2040 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258D257CFD7800EE2040 /* Preview Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		F410897925858302000B9265 /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
 		F410897E2586511B000B9265 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F470FE08258814A1006205DE /* AppStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateHolder.swift; sourceTree = "<group>"; };
+		F470FE2E2588264F006205DE /* MyFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFilesView.swift; sourceTree = "<group>"; };
+		F470FE3325882661006205DE /* SharedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFilesView.swift; sourceTree = "<group>"; };
 		F4802583257CFD6500EE2040 /* mfsa-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mfsa-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mfsa_iosApp.swift; sourceTree = "<group>"; };
 		F480258A257CFD7800EE2040 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,9 +135,27 @@
 		F4108975258582E9000B9265 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				F470FE2C2588261A006205DE /* My Files */,
+				F470FE2D2588262C006205DE /* Shared Files */,
 				F410897925858302000B9265 /* FilesView.swift */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		F470FE2C2588261A006205DE /* My Files */ = {
+			isa = PBXGroup;
+			children = (
+				F470FE2E2588264F006205DE /* MyFilesView.swift */,
+			);
+			path = "My Files";
+			sourceTree = "<group>";
+		};
+		F470FE2D2588262C006205DE /* Shared Files */ = {
+			isa = PBXGroup;
+			children = (
+				F470FE3325882661006205DE /* SharedFilesView.swift */,
+			);
+			path = "Shared Files";
 			sourceTree = "<group>";
 		};
 		F480257A257CFD6400EE2040 = {
@@ -488,6 +510,8 @@
 				F410897F2586511B000B9265 /* MainView.swift in Sources */,
 				F4108969258520CC000B9265 /* CognitoLoginError.swift in Sources */,
 				F4C669922585092F0017769F /* LoginViewModel.swift in Sources */,
+				F470FE2F2588264F006205DE /* MyFilesView.swift in Sources */,
+				F470FE3425882661006205DE /* SharedFilesView.swift in Sources */,
 				F4C14F4425851C3400EC365E /* CognitoLoginManager.swift in Sources */,
 				F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */,
 				F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */,
