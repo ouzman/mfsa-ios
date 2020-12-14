@@ -12,6 +12,9 @@
 		5C795024A94F98110DDF9CC1 /* Pods_mfsa_ios_mfsa_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A450F43C789066965D3BC2F /* Pods_mfsa_ios_mfsa_iosUITests.framework */; };
 		ACA5E07752CC0D4160B8CF4E /* Pods_mfsa_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273DFD88055C1A5AC24E564E /* Pods_mfsa_iosTests.framework */; };
 		F4108969258520CC000B9265 /* CognitoLoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108968258520CC000B9265 /* CognitoLoginError.swift */; };
+		F410897A25858302000B9265 /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410897925858302000B9265 /* FilesView.swift */; };
+		F410897F2586511B000B9265 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410897E2586511B000B9265 /* MainView.swift */; };
+		F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE08258814A1006205DE /* AppStateHolder.swift */; };
 		F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */; };
 		F480258B257CFD7800EE2040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258A257CFD7800EE2040 /* Assets.xcassets */; };
 		F480258E257CFD7800EE2040 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258D257CFD7800EE2040 /* Preview Assets.xcassets */; };
@@ -53,6 +56,9 @@
 		94505888823C747A9D5BE92B /* Pods-mfsa-ios-mfsa-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mfsa-ios-mfsa-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-mfsa-ios-mfsa-iosUITests/Pods-mfsa-ios-mfsa-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD02EC609139F8FCB1FB3DBB /* Pods-mfsa-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mfsa-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-mfsa-iosTests/Pods-mfsa-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4108968258520CC000B9265 /* CognitoLoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoLoginError.swift; sourceTree = "<group>"; };
+		F410897925858302000B9265 /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
+		F410897E2586511B000B9265 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F470FE08258814A1006205DE /* AppStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateHolder.swift; sourceTree = "<group>"; };
 		F4802583257CFD6500EE2040 /* mfsa-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mfsa-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mfsa_iosApp.swift; sourceTree = "<group>"; };
 		F480258A257CFD7800EE2040 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +128,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F4108975258582E9000B9265 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				F410897925858302000B9265 /* FilesView.swift */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
 		F480257A257CFD6400EE2040 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +166,7 @@
 				F4C14F4925851EA000EC365E /* Facebook */,
 				F4C14F4825851E8600EC365E /* Configuration */,
 				F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */,
+				F470FE08258814A1006205DE /* AppStateHolder.swift */,
 				F480258A257CFD7800EE2040 /* Assets.xcassets */,
 				F480258C257CFD7800EE2040 /* Preview Content */,
 			);
@@ -215,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				F4C14F5225851EF300EC365E /* Login */,
+				F4108975258582E9000B9265 /* Files */,
+				F410897E2586511B000B9265 /* MainView.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -467,9 +484,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F410897A25858302000B9265 /* FilesView.swift in Sources */,
+				F410897F2586511B000B9265 /* MainView.swift in Sources */,
 				F4108969258520CC000B9265 /* CognitoLoginError.swift in Sources */,
 				F4C669922585092F0017769F /* LoginViewModel.swift in Sources */,
 				F4C14F4425851C3400EC365E /* CognitoLoginManager.swift in Sources */,
+				F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */,
 				F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */,
 				F4C14F4B25851EB100EC365E /* FacebookLoginError.swift in Sources */,
 				F4C6699725850D9D0017769F /* FacebookUserLoginManager.swift in Sources */,

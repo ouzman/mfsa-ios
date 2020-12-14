@@ -19,9 +19,7 @@ final class LoginViewModel: ObservableObject {
     }
     
     @Published var errorAlertDetails: ErrorAlertDetails? = nil
-    
-    @Published var loginSuccessful: Bool = false
-    
+        
     deinit {
         loginCancellable?.cancel()
     }
@@ -38,7 +36,7 @@ final class LoginViewModel: ObservableObject {
                     self.errorAlertDetails = error
                 }
             }, receiveValue: { (_) in
-                self.loginSuccessful = true
+                AppStateHolder.instance.state = .loggedIn
             })
     }
 }

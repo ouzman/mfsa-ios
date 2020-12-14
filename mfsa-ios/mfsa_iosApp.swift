@@ -6,13 +6,10 @@
 //
 
 import SwiftUI
-import UIKit
 import AWSMobileClient
-
 
 @main
 struct mfsa_iosApp: App {
-
     init() {
         AWSMobileClient.default().initialize { (userState, error) in
              if let userState = userState {
@@ -25,7 +22,8 @@ struct mfsa_iosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginView(viewModel: LoginViewModel())
+            MainView()
+                .environmentObject(AppStateHolder.instance)
         }
     }
 }
