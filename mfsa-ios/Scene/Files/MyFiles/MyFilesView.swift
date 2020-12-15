@@ -9,7 +9,11 @@ import SwiftUI
 
 struct MyFilesView: View {
     var body: some View {
-        Text("Hello, my world!")
+        List {
+            AddFileRow { url in print(url) }
+            FolderRow(name: "Test Folder 1")
+            FolderRow(name: "Test Folder 2")
+        }
     }
 }
 
