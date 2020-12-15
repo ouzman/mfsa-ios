@@ -69,21 +69,27 @@ struct LoginView: View {
     }
     
     var facebookButton: some View {
-        Button("Facebook", action: {
+        Button(action: {
             viewModel.facebookLogin()
-        })
+        }) {
+            Text("Facebook")
+                .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity,
+                       minHeight: 0, idealHeight: 100, maxHeight: .infinity,
+                       alignment: .center)
+
+        }
         .foregroundColor(.white)
-        .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity,
-               minHeight: 0, idealHeight: 100, maxHeight: .infinity,
-               alignment: .center)
         .background(Color(.systemBlue))
     }
     
     var twitterButton : some View {
-        Text("Twitter")
+        Button(action: { }) {
+            Text("Twitter")
+                .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity,
+                       minHeight: 0, idealHeight: 100, maxHeight: .infinity,
+                       alignment: .center)
+        }
             .foregroundColor(.white)
-            .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity,
-                   minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
             .background(Color(.systemBlue))
     }
     
