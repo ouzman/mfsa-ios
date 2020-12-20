@@ -9,7 +9,6 @@ import Combine
 import AWSMobileClient
 
 final class CognitoLoginManager {
-    
     func federatedSignIn(with facebookToken: String) -> Future<UserState, CognitoLoginError> {
         return self.federatedSignIn(provider: .facebook, token: facebookToken)
     }
@@ -38,7 +37,6 @@ final class CognitoLoginManager {
     }
     
     func logout() {
-        AWSMobileClient.default().clearKeychain()
-        AWSMobileClient.default().clearCredentials()
+        AWSMobileClient.default().signOut()
     }
 }
