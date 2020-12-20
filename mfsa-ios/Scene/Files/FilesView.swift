@@ -8,22 +8,41 @@
 import SwiftUI
 
 struct FilesView: View {
+    @State private var tabSelection: FilesTabs = .myFiles
+    
     var body: some View {
-        TabView {
+        TabView(selection: $tabSelection) {
             MyFilesView()
                 .tabItem {
                     Image(systemName: "person")
-                    Text("My Files")
+                    Text(FilesTabs.myFiles.getTitle())
                 }
+                .tag(FilesTabs.myFiles)
             
             SharedFilesView()
                 .tabItem {
                     Image(systemName: "person.2")
-                    Text("Shared Files")
+                    Text(FilesTabs.sharedWithMe.getTitle())
                 }
+                .tag(FilesTabs.sharedWithMe)
         }
-            .navigationBarHidden(false)
-            .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(trailing: LogoutButton())
+        .navigationTitle(self.tabSelection.getTitle())
+    }
+}
+
+enum FilesTabs {
+    case myFiles
+    case sharedWithMe
+    
+    func getTitle() -> String {
+        switch self {
+        case .myFiles:
+            return "My Files"
+        case .sharedWithMe:
+            return "Shared With Me"
+        }
     }
 }
 

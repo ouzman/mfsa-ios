@@ -19,6 +19,8 @@
 		F470FE3425882661006205DE /* SharedFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE3325882661006205DE /* SharedFilesView.swift */; };
 		F470FE3A2588283E006205DE /* FolderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE392588283E006205DE /* FolderRow.swift */; };
 		F470FE4225882ADB006205DE /* AddFileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE4125882ADB006205DE /* AddFileRow.swift */; };
+		F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47909EE258FA2F8008317D8 /* LogoutButton.swift */; };
+		F47909F4258FDBB5008317D8 /* FileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47909F3258FDBB5008317D8 /* FileRow.swift */; };
 		F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */; };
 		F480258B257CFD7800EE2040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258A257CFD7800EE2040 /* Assets.xcassets */; };
 		F480258E257CFD7800EE2040 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258D257CFD7800EE2040 /* Preview Assets.xcassets */; };
@@ -67,6 +69,8 @@
 		F470FE3325882661006205DE /* SharedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFilesView.swift; sourceTree = "<group>"; };
 		F470FE392588283E006205DE /* FolderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRow.swift; sourceTree = "<group>"; };
 		F470FE4125882ADB006205DE /* AddFileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileRow.swift; sourceTree = "<group>"; };
+		F47909EE258FA2F8008317D8 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
+		F47909F3258FDBB5008317D8 /* FileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRow.swift; sourceTree = "<group>"; };
 		F4802583257CFD6500EE2040 /* mfsa-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mfsa-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mfsa_iosApp.swift; sourceTree = "<group>"; };
 		F480258A257CFD7800EE2040 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -166,7 +170,9 @@
 			isa = PBXGroup;
 			children = (
 				F470FE392588283E006205DE /* FolderRow.swift */,
+				F47909F3258FDBB5008317D8 /* FileRow.swift */,
 				F470FE4125882ADB006205DE /* AddFileRow.swift */,
+				F47909EE258FA2F8008317D8 /* LogoutButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -520,7 +526,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F47909F4258FDBB5008317D8 /* FileRow.swift in Sources */,
 				F410897A25858302000B9265 /* FilesView.swift in Sources */,
+				F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */,
 				F410897F2586511B000B9265 /* MainView.swift in Sources */,
 				F4108969258520CC000B9265 /* CognitoLoginError.swift in Sources */,
 				F4C669922585092F0017769F /* LoginViewModel.swift in Sources */,
