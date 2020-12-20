@@ -7,12 +7,9 @@
 
 import SwiftUI
 import Combine
-import FBSDKCoreKit
-import AWSMobileClient
 
 final class LoginViewModel: ObservableObject {
-    private let facebookUserLoginManager = FacebookUserLoginManager()
-    private let cognitoLoginManager = CognitoLoginManager()
+    private let loginService: LoginService = LoginService.instance
     
     private var loginCancellable: Cancellable? {
         didSet { oldValue?.cancel() }
@@ -23,20 +20,20 @@ final class LoginViewModel: ObservableObject {
     deinit {
         loginCancellable?.cancel()
     }
-    
+        
     func facebookLogin() {
-        loginCancellable = facebookUserLoginManager.login()
-            .mapErrorToAlertDetails()
-            .flatMap { self.cognitoLoginManager.federatedSignIn(with: $0.tokenString).mapErrorToAlertDetails() }
-            .eraseToAnyPublisher()
+        loginCancellable = loginService.facebookLogin()
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
-            .sink(receiveCompletion: { (completion: (Subscribers.Completion<ErrorAlertDetails>)) in
-                if case .failure(let error) = completion {
-                    self.errorAlertDetails = error
+            .sink(receiveValue: { loginResult in
+                switch loginResult {
+                case .success:
+                    AppStateHolder.instance.state = .loggedIn
+                    break
+                case .failure(let provider, let error):
+                    self.errorAlertDetails = ErrorAlertDetails(title: provider.visibleName, details: error.errorDescription ?? "Unknown error")
+                    break
                 }
-            }, receiveValue: { (_) in
-                AppStateHolder.instance.state = .loggedIn
             })
     }
 }
@@ -44,24 +41,4 @@ final class LoginViewModel: ObservableObject {
 struct ErrorAlertDetails: Error {
     let title: String
     let details: String
-}
-
-extension Publisher where Failure == CognitoLoginError {
-    func mapErrorToAlertDetails() -> AnyPublisher<Self.Output, ErrorAlertDetails> {
-        self
-            .mapError { (error: Self.Failure) -> ErrorAlertDetails in
-                ErrorAlertDetails(title: "Cognito Error", details: error.errorDescription!)
-            }
-            .eraseToAnyPublisher()
-    }
-}
-
-extension Publisher where Failure == FacebookLoginError {
-    func mapErrorToAlertDetails() -> AnyPublisher<Self.Output, ErrorAlertDetails> {
-        self
-            .mapError { (error: Self.Failure) -> ErrorAlertDetails in
-                ErrorAlertDetails(title: "Facebook Error", details: error.errorDescription!)
-            }
-            .eraseToAnyPublisher()
-    }
 }

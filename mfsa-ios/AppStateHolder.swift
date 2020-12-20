@@ -13,7 +13,11 @@ class AppStateHolder : ObservableObject {
     @Published var state : AppState
         
     private init() {
-        self.state = .needToLogin
+        if LoginService.instance.userLoggedIn() {
+            self.state = .loggedIn
+        } else {
+            self.state = .needToLogin
+        }
     }
 }
 

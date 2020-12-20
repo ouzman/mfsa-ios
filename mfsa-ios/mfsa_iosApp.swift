@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AWSMobileClient
+import FBSDKLoginKit
 
 @main
 struct mfsa_iosApp: App {

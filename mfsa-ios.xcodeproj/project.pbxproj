@@ -14,6 +14,10 @@
 		F4108969258520CC000B9265 /* CognitoLoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108968258520CC000B9265 /* CognitoLoginError.swift */; };
 		F410897A25858302000B9265 /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410897925858302000B9265 /* FilesView.swift */; };
 		F410897F2586511B000B9265 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410897E2586511B000B9265 /* MainView.swift */; };
+		F425A18B258FF5250066C185 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F425A18A258FF5250066C185 /* LoginService.swift */; };
+		F425A190258FFB320066C185 /* LoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F425A18F258FFB320066C185 /* LoginProvider.swift */; };
+		F425A195258FFB3E0066C185 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F425A194258FFB3E0066C185 /* LoginError.swift */; };
+		F425A19A258FFB4C0066C185 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F425A199258FFB4C0066C185 /* LoginResult.swift */; };
 		F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE08258814A1006205DE /* AppStateHolder.swift */; };
 		F470FE2F2588264F006205DE /* MyFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE2E2588264F006205DE /* MyFilesView.swift */; };
 		F470FE3425882661006205DE /* SharedFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE3325882661006205DE /* SharedFilesView.swift */; };
@@ -64,6 +68,10 @@
 		F4108968258520CC000B9265 /* CognitoLoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoLoginError.swift; sourceTree = "<group>"; };
 		F410897925858302000B9265 /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
 		F410897E2586511B000B9265 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F425A18A258FF5250066C185 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		F425A18F258FFB320066C185 /* LoginProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProvider.swift; sourceTree = "<group>"; };
+		F425A194258FFB3E0066C185 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
+		F425A199258FFB4C0066C185 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 		F470FE08258814A1006205DE /* AppStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateHolder.swift; sourceTree = "<group>"; };
 		F470FE2E2588264F006205DE /* MyFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFilesView.swift; sourceTree = "<group>"; };
 		F470FE3325882661006205DE /* SharedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFilesView.swift; sourceTree = "<group>"; };
@@ -150,6 +158,27 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		F425A185258FF5090066C185 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F425A186258FF5110066C185 /* Login */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		F425A186258FF5110066C185 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F4C14F4F25851EC800EC365E /* Amazon */,
+				F4C14F4925851EA000EC365E /* Facebook */,
+				F425A18A258FF5250066C185 /* LoginService.swift */,
+				F425A18F258FFB320066C185 /* LoginProvider.swift */,
+				F425A194258FFB3E0066C185 /* LoginError.swift */,
+				F425A199258FFB4C0066C185 /* LoginResult.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		F470FE2C2588261A006205DE /* MyFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,9 +231,8 @@
 		F4802585257CFD6500EE2040 /* mfsa-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F425A185258FF5090066C185 /* Service */,
 				F4C14F5125851EEB00EC365E /* Scene */,
-				F4C14F4F25851EC800EC365E /* Amazon */,
-				F4C14F4925851EA000EC365E /* Facebook */,
 				F4C14F4825851E8600EC365E /* Configuration */,
 				F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */,
 				F470FE08258814A1006205DE /* AppStateHolder.swift */,
@@ -526,15 +554,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F425A18B258FF5250066C185 /* LoginService.swift in Sources */,
 				F47909F4258FDBB5008317D8 /* FileRow.swift in Sources */,
 				F410897A25858302000B9265 /* FilesView.swift in Sources */,
 				F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */,
+				F425A195258FFB3E0066C185 /* LoginError.swift in Sources */,
+				F425A190258FFB320066C185 /* LoginProvider.swift in Sources */,
 				F410897F2586511B000B9265 /* MainView.swift in Sources */,
 				F4108969258520CC000B9265 /* CognitoLoginError.swift in Sources */,
 				F4C669922585092F0017769F /* LoginViewModel.swift in Sources */,
 				F470FE3A2588283E006205DE /* FolderRow.swift in Sources */,
 				F470FE2F2588264F006205DE /* MyFilesView.swift in Sources */,
 				F470FE4225882ADB006205DE /* AddFileRow.swift in Sources */,
+				F425A19A258FFB4C0066C185 /* LoginResult.swift in Sources */,
 				F470FE3425882661006205DE /* SharedFilesView.swift in Sources */,
 				F4C14F4425851C3400EC365E /* CognitoLoginManager.swift in Sources */,
 				F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */,
