@@ -39,4 +39,10 @@ final class FacebookUserLoginManager {
             }
         }
     }
+    
+    func logout() {
+        self.loginManager.logOut()
+        AccessToken.current = nil
+        
+    }
 }

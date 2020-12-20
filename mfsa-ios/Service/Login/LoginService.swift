@@ -30,8 +30,25 @@ class LoginService {
     }
     
     func userLoggedIn() -> Bool {
+        print("Amazon default.identityId: \(AWSMobileClient.default().identityId ?? "yok")")
+        print("Amazon default.isLoggedIn: \(AWSMobileClient.default().isLoggedIn)")
+        print("Amazon default.currentUserState: \(AWSMobileClient.default().currentUserState)")
+            
+        if let currentAccessToken = AccessToken.current {
+            print("Facebook AccessToken.current.isExpired: \(currentAccessToken.isExpired)")
+            print("Facebook AccessToken.current.tokenString: \(currentAccessToken.tokenString)")
+        } else {
+            print("Facebook AccessToken.current: nil")
+        }
+        
         return AWSMobileClient.default().currentUserState == .signedIn
             && AccessToken.current != nil
             && AccessToken.current?.isExpired == false
+    }
+    
+    func logout() {
+        cognitoLoginManager.logout()
+        facebookUserLoginManager.logout()
+        AppStateHolder.instance.state = .needToLogin
     }
 }

@@ -36,4 +36,9 @@ final class CognitoLoginManager {
                 }
         }
     }
+    
+    func logout() {
+        AWSMobileClient.default().clearKeychain()
+        AWSMobileClient.default().clearCredentials()
+    }
 }

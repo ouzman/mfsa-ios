@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct LogoutButton: View {
+    @State private var showAlert = false
+    
     var body: some View {
-        Button("Logout", action: { })
+        Button("Logout", action: { self.showAlert = true })
+            .alert(isPresented: $showAlert, content: {
+                Alert(title: Text("Logout"),
+                      message: Text("User will be logged out. Are you sure?"),
+                      primaryButton: .destructive(Text("Logout").bold(),
+                                              action: { LoginService.instance.logout() }),
+                      secondaryButton: .cancel())
+            })
     }
 }
 
