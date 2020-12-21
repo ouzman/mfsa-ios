@@ -28,7 +28,7 @@ class LoginService {
             .eraseToAnyPublisher()
     }
     
-    private func getWindow() -> UIWindow? {
+    private func getWindow() -> UIWindow? { // TODO: remove this function
         guard let scene = UIApplication.shared.connectedScenes.first,
               let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
               let window = windowSceneDelegate.window else {

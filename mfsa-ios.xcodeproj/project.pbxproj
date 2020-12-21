@@ -22,7 +22,6 @@
 		F470FE3A2588283E006205DE /* FolderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE392588283E006205DE /* FolderRow.swift */; };
 		F470FE4225882ADB006205DE /* AddFileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE4125882ADB006205DE /* AddFileRow.swift */; };
 		F47247CB2590252A00F82F34 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = F47247CA2590252A00F82F34 /* amplifyconfiguration.json */; };
-		F47247D3259029ED00F82F34 /* UIWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47247D2259029ED00F82F34 /* UIWindowKey.swift */; };
 		F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47909EE258FA2F8008317D8 /* LogoutButton.swift */; };
 		F47909F4258FDBB5008317D8 /* FileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47909F3258FDBB5008317D8 /* FileRow.swift */; };
 		F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */; };
@@ -73,7 +72,6 @@
 		F470FE392588283E006205DE /* FolderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRow.swift; sourceTree = "<group>"; };
 		F470FE4125882ADB006205DE /* AddFileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileRow.swift; sourceTree = "<group>"; };
 		F47247CA2590252A00F82F34 /* amplifyconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
-		F47247D2259029ED00F82F34 /* UIWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowKey.swift; sourceTree = "<group>"; };
 		F47909EE258FA2F8008317D8 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
 		F47909F3258FDBB5008317D8 /* FileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRow.swift; sourceTree = "<group>"; };
 		F4802583257CFD6500EE2040 /* mfsa-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mfsa-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,7 +229,6 @@
 				F47247CA2590252A00F82F34 /* amplifyconfiguration.json */,
 				F480258A257CFD7800EE2040 /* Assets.xcassets */,
 				F480258C257CFD7800EE2040 /* Preview Content */,
-				F47247D2259029ED00F82F34 /* UIWindowKey.swift */,
 			);
 			path = "mfsa-ios";
 			sourceTree = "<group>";
@@ -530,7 +527,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F425A18B258FF5250066C185 /* LoginService.swift in Sources */,
-				F47247D3259029ED00F82F34 /* UIWindowKey.swift in Sources */,
 				F47909F4258FDBB5008317D8 /* FileRow.swift in Sources */,
 				F410897A25858302000B9265 /* FilesView.swift in Sources */,
 				F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */,
