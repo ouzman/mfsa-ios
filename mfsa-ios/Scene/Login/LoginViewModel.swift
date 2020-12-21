@@ -7,11 +7,12 @@
 
 import SwiftUI
 import Combine
+import Amplify
 
 final class LoginViewModel: ObservableObject {
     private let loginService: LoginService = LoginService.instance
     
-    private var loginCancellable: Cancellable? {
+    private var loginCancellable: Combine.Cancellable? {
         didSet { oldValue?.cancel() }
     }
     
@@ -20,7 +21,7 @@ final class LoginViewModel: ObservableObject {
     deinit {
         loginCancellable?.cancel()
     }
-        
+    
     func facebookLogin() {
         loginCancellable = loginService.facebookLogin()
             .receive(on: RunLoop.main)
@@ -31,7 +32,7 @@ final class LoginViewModel: ObservableObject {
                     AppStateHolder.instance.state = .loggedIn
                     break
                 case .failure(let provider, let error):
-                    self.errorAlertDetails = ErrorAlertDetails(title: provider.visibleName, details: error.errorDescription ?? "Unknown error")
+                    self.errorAlertDetails = ErrorAlertDetails(title: provider.visibleName, details: (error as? AuthError)?.errorDescription ?? "Unknown error")
                     break
                 }
             })

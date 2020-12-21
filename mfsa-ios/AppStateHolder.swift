@@ -5,19 +5,27 @@
 //  Created by Oguzhan Uzman on 15.12.2020.
 //
 
-import Foundation
+import Combine
 
 class AppStateHolder : ObservableObject {
+    private var cancellables = Set<AnyCancellable>()
     static let instance = AppStateHolder()
-    
-    @Published var state : AppState
+
+    @Published var state : AppState = .needToLogin
         
     private init() {
-        if LoginService.instance.userLoggedIn() {
-            self.state = .loggedIn
-        } else {
-            self.state = .needToLogin
-        }
+//        LoginService.instance.userLoggedIn()
+//            .sink { loginResult in
+//                switch loginResult {
+//                case .success:
+//                    self.state = .loggedIn
+//                    break
+//                case .failure( _, _):
+//                    self.state = .needToLogin
+//                    break
+//                }
+//            }
+//            .store(in: &cancellables)
     }
 }
 

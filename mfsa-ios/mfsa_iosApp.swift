@@ -6,18 +6,34 @@
 //
 
 import SwiftUI
-import AWSMobileClient
-import FBSDKLoginKit
+import Amplify
+import AmplifyPlugins
+import Combine
 
 @main
 struct mfsa_iosApp: App {
+    private var cancellables = Set<AnyCancellable>()
+    
     init() {
-        AWSMobileClient.default().initialize { (userState, error) in
-            if let userState = userState {
-                print("UserState: \(userState.rawValue)")
-            } else if let error = error {
-                print("error: \(error.localizedDescription)")
-            }
+        do {
+            try Amplify.add(plugin: AWSCognitoAuthPlugin())
+            try Amplify.configure()
+            print("Amplify configured with auth plugin")
+            LoginService.instance.userLoggedIn()
+                .sink { loginResult in
+                    switch loginResult {
+                    case .success:
+                        AppStateHolder.instance.state = .loggedIn
+                        break
+                    case .failure(_, _):
+                        AppStateHolder.instance.state = .needToLogin
+                        break
+                    }
+                }
+                .store(in: &cancellables)
+            
+        } catch {
+            print("Failed to initialize Amplify with \(error)")
         }
     }
     

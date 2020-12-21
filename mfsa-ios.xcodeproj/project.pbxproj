@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		396CCEB505AAA962654E68B1 /* Pods_mfsa_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCA2B0AF442C77F02B2C454 /* Pods_mfsa_ios.framework */; };
-		568B07D79EAA4D8DAEB0BA89 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D364DE89E1944DC9ACBA417 /* awsconfiguration.json */; };
 		5C795024A94F98110DDF9CC1 /* Pods_mfsa_ios_mfsa_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A450F43C789066965D3BC2F /* Pods_mfsa_ios_mfsa_iosUITests.framework */; };
 		ACA5E07752CC0D4160B8CF4E /* Pods_mfsa_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273DFD88055C1A5AC24E564E /* Pods_mfsa_iosTests.framework */; };
-		F4108969258520CC000B9265 /* CognitoLoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108968258520CC000B9265 /* CognitoLoginError.swift */; };
 		F410897A25858302000B9265 /* FilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410897925858302000B9265 /* FilesView.swift */; };
 		F410897F2586511B000B9265 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410897E2586511B000B9265 /* MainView.swift */; };
 		F425A18B258FF5250066C185 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F425A18A258FF5250066C185 /* LoginService.swift */; };
@@ -23,6 +21,8 @@
 		F470FE3425882661006205DE /* SharedFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE3325882661006205DE /* SharedFilesView.swift */; };
 		F470FE3A2588283E006205DE /* FolderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE392588283E006205DE /* FolderRow.swift */; };
 		F470FE4225882ADB006205DE /* AddFileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE4125882ADB006205DE /* AddFileRow.swift */; };
+		F47247CB2590252A00F82F34 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = F47247CA2590252A00F82F34 /* amplifyconfiguration.json */; };
+		F47247D3259029ED00F82F34 /* UIWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47247D2259029ED00F82F34 /* UIWindowKey.swift */; };
 		F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47909EE258FA2F8008317D8 /* LogoutButton.swift */; };
 		F47909F4258FDBB5008317D8 /* FileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47909F3258FDBB5008317D8 /* FileRow.swift */; };
 		F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */; };
@@ -30,11 +30,8 @@
 		F480258E257CFD7800EE2040 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258D257CFD7800EE2040 /* Preview Assets.xcassets */; };
 		F4802599257CFD7800EE2040 /* mfsa_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4802598257CFD7800EE2040 /* mfsa_iosTests.swift */; };
 		F48025A4257CFD7800EE2040 /* mfsa_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */; };
-		F4C14F4425851C3400EC365E /* CognitoLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C14F4325851C3400EC365E /* CognitoLoginManager.swift */; };
-		F4C14F4B25851EB100EC365E /* FacebookLoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C14F4A25851EB100EC365E /* FacebookLoginError.swift */; };
 		F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6698C2584DBDA0017769F /* LoginView.swift */; };
 		F4C669922585092F0017769F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C669912585092F0017769F /* LoginViewModel.swift */; };
-		F4C6699725850D9D0017769F /* FacebookUserLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6699625850D9D0017769F /* FacebookUserLoginManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,13 +56,11 @@
 		1C449F6EB8E241C044CD4124 /* Pods-mfsa-ios-mfsa-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mfsa-ios-mfsa-iosUITests.release.xcconfig"; path = "Target Support Files/Pods-mfsa-ios-mfsa-iosUITests/Pods-mfsa-ios-mfsa-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		22821D9A6FD8F9985F2A27C3 /* Pods-mfsa-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mfsa-ios.release.xcconfig"; path = "Target Support Files/Pods-mfsa-ios/Pods-mfsa-ios.release.xcconfig"; sourceTree = "<group>"; };
 		273DFD88055C1A5AC24E564E /* Pods_mfsa_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mfsa_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D364DE89E1944DC9ACBA417 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		7DCA2B0AF442C77F02B2C454 /* Pods_mfsa_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mfsa_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CE56E6DEEB2AF4E35FA7FF /* Pods-mfsa-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mfsa-ios.debug.xcconfig"; path = "Target Support Files/Pods-mfsa-ios/Pods-mfsa-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		8A450F43C789066965D3BC2F /* Pods_mfsa_ios_mfsa_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mfsa_ios_mfsa_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94505888823C747A9D5BE92B /* Pods-mfsa-ios-mfsa-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mfsa-ios-mfsa-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-mfsa-ios-mfsa-iosUITests/Pods-mfsa-ios-mfsa-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD02EC609139F8FCB1FB3DBB /* Pods-mfsa-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mfsa-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-mfsa-iosTests/Pods-mfsa-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F4108968258520CC000B9265 /* CognitoLoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoLoginError.swift; sourceTree = "<group>"; };
 		F410897925858302000B9265 /* FilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesView.swift; sourceTree = "<group>"; };
 		F410897E2586511B000B9265 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F425A18A258FF5250066C185 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
@@ -77,6 +72,8 @@
 		F470FE3325882661006205DE /* SharedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFilesView.swift; sourceTree = "<group>"; };
 		F470FE392588283E006205DE /* FolderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRow.swift; sourceTree = "<group>"; };
 		F470FE4125882ADB006205DE /* AddFileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFileRow.swift; sourceTree = "<group>"; };
+		F47247CA2590252A00F82F34 /* amplifyconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		F47247D2259029ED00F82F34 /* UIWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowKey.swift; sourceTree = "<group>"; };
 		F47909EE258FA2F8008317D8 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
 		F47909F3258FDBB5008317D8 /* FileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRow.swift; sourceTree = "<group>"; };
 		F4802583257CFD6500EE2040 /* mfsa-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mfsa-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,11 +87,8 @@
 		F480259F257CFD7800EE2040 /* mfsa-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mfsa-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mfsa_iosUITests.swift; sourceTree = "<group>"; };
 		F48025A5257CFD7800EE2040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4C14F4325851C3400EC365E /* CognitoLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoLoginManager.swift; sourceTree = "<group>"; };
-		F4C14F4A25851EB100EC365E /* FacebookLoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginError.swift; sourceTree = "<group>"; };
 		F4C6698C2584DBDA0017769F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F4C669912585092F0017769F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		F4C6699625850D9D0017769F /* FacebookUserLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookUserLoginManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,8 +163,6 @@
 		F425A186258FF5110066C185 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F4C14F4F25851EC800EC365E /* Amazon */,
-				F4C14F4925851EA000EC365E /* Facebook */,
 				F425A18A258FF5250066C185 /* LoginService.swift */,
 				F425A18F258FFB320066C185 /* LoginProvider.swift */,
 				F425A194258FFB3E0066C185 /* LoginError.swift */,
@@ -236,8 +228,10 @@
 				F4C14F4825851E8600EC365E /* Configuration */,
 				F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */,
 				F470FE08258814A1006205DE /* AppStateHolder.swift */,
+				F47247CA2590252A00F82F34 /* amplifyconfiguration.json */,
 				F480258A257CFD7800EE2040 /* Assets.xcassets */,
 				F480258C257CFD7800EE2040 /* Preview Content */,
+				F47247D2259029ED00F82F34 /* UIWindowKey.swift */,
 			);
 			path = "mfsa-ios";
 			sourceTree = "<group>";
@@ -272,27 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				F480258F257CFD7800EE2040 /* Info.plist */,
-				7D364DE89E1944DC9ACBA417 /* awsconfiguration.json */,
 			);
 			path = Configuration;
-			sourceTree = "<group>";
-		};
-		F4C14F4925851EA000EC365E /* Facebook */ = {
-			isa = PBXGroup;
-			children = (
-				F4C6699625850D9D0017769F /* FacebookUserLoginManager.swift */,
-				F4C14F4A25851EB100EC365E /* FacebookLoginError.swift */,
-			);
-			path = Facebook;
-			sourceTree = "<group>";
-		};
-		F4C14F4F25851EC800EC365E /* Amazon */ = {
-			isa = PBXGroup;
-			children = (
-				F4C14F4325851C3400EC365E /* CognitoLoginManager.swift */,
-				F4108968258520CC000B9265 /* CognitoLoginError.swift */,
-			);
-			path = Amazon;
 			sourceTree = "<group>";
 		};
 		F4C14F5125851EEB00EC365E /* Scene */ = {
@@ -426,7 +401,7 @@
 			files = (
 				F480258E257CFD7800EE2040 /* Preview Assets.xcassets in Resources */,
 				F480258B257CFD7800EE2040 /* Assets.xcassets in Resources */,
-				568B07D79EAA4D8DAEB0BA89 /* awsconfiguration.json in Resources */,
+				F47247CB2590252A00F82F34 /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,24 +530,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				F425A18B258FF5250066C185 /* LoginService.swift in Sources */,
+				F47247D3259029ED00F82F34 /* UIWindowKey.swift in Sources */,
 				F47909F4258FDBB5008317D8 /* FileRow.swift in Sources */,
 				F410897A25858302000B9265 /* FilesView.swift in Sources */,
 				F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */,
 				F425A195258FFB3E0066C185 /* LoginError.swift in Sources */,
 				F425A190258FFB320066C185 /* LoginProvider.swift in Sources */,
 				F410897F2586511B000B9265 /* MainView.swift in Sources */,
-				F4108969258520CC000B9265 /* CognitoLoginError.swift in Sources */,
 				F4C669922585092F0017769F /* LoginViewModel.swift in Sources */,
 				F470FE3A2588283E006205DE /* FolderRow.swift in Sources */,
 				F470FE2F2588264F006205DE /* MyFilesView.swift in Sources */,
 				F470FE4225882ADB006205DE /* AddFileRow.swift in Sources */,
 				F425A19A258FFB4C0066C185 /* LoginResult.swift in Sources */,
 				F470FE3425882661006205DE /* SharedFilesView.swift in Sources */,
-				F4C14F4425851C3400EC365E /* CognitoLoginManager.swift in Sources */,
 				F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */,
 				F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */,
-				F4C14F4B25851EB100EC365E /* FacebookLoginError.swift in Sources */,
-				F4C6699725850D9D0017769F /* FacebookUserLoginManager.swift in Sources */,
 				F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

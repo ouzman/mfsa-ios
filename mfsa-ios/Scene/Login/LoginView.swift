@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import AWSMobileClient
-import FBSDKLoginKit
 
 struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel

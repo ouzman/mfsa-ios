@@ -9,5 +9,5 @@ import Foundation
 
 enum LoginResult {
     case success
-    case failure(provider: LoginProvider, error: LocalizedError)
+    case failure(provider: LoginProvider, error: Error)
 }
