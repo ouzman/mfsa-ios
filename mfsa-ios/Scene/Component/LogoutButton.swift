@@ -6,19 +6,34 @@
 //
 
 import SwiftUI
+import Combine
 
 struct LogoutButton: View {
-    @State private var showAlert = false
+    private let viewModel = LogoutButtonViewModel()
     
+    @State private var showAlert = false
+
     var body: some View {
         Button("Logout", action: { self.showAlert = true })
             .alert(isPresented: $showAlert, content: {
                 Alert(title: Text("Logout"),
                       message: Text("User will be logged out. Are you sure?"),
                       primaryButton: .destructive(Text("Logout").bold(),
-                                              action: { LoginService.instance.logout() }),
+                                                  action: { viewModel.logout() }),
                       secondaryButton: .cancel())
             })
+    }
+}
+
+class LogoutButtonViewModel {
+    private var cancellables = Set<AnyCancellable>()
+
+    func logout() {
+        LoginService.instance.logout()
+            .sink { _ in
+                AppState.instance.userState = .needToLogin
+            }
+            .store(in: &cancellables)
     }
 }
 

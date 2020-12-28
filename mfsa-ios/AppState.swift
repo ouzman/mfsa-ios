@@ -7,11 +7,11 @@
 
 import Combine
 
-class AppStateHolder : ObservableObject {
+class AppState : ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    static let instance = AppStateHolder()
+    static let instance = AppState()
 
-    @Published var state : AppState = .needToLogin
+    @Published var userState : UserState = .needToLogin
         
     private init() {
 //        LoginService.instance.userLoggedIn()
@@ -27,9 +27,4 @@ class AppStateHolder : ObservableObject {
 //            }
 //            .store(in: &cancellables)
     }
-}
-
-enum AppState {
-    case needToLogin
-    case loggedIn
 }

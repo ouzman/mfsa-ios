@@ -23,16 +23,16 @@ final class LoginViewModel: ObservableObject {
     }
     
     func facebookLogin() {
-        loginCancellable = loginService.facebookLogin()
+        loginCancellable = loginService.login(provider: .facebook)
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
             .sink(receiveValue: { loginResult in
                 switch loginResult {
                 case .success:
-                    AppStateHolder.instance.state = .loggedIn
+                    AppState.instance.userState = .loggedIn
                     break
-                case .failure(let provider, let error):
-                    self.errorAlertDetails = ErrorAlertDetails(title: provider.visibleName, details: (error as? AuthError)?.errorDescription ?? "Unknown error")
+                case .failure(let error):
+                    self.errorAlertDetails = ErrorAlertDetails(title: error.provider.visibleName, details: error.description)
                     break
                 }
             })

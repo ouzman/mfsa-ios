@@ -6,7 +6,6 @@
 //
 
 import Combine
-import Foundation
 import Amplify
 
 class LoginService {
@@ -16,47 +15,36 @@ class LoginService {
 
     private init() { }
     
-    func facebookLogin() -> AnyPublisher<LoginResult, Never> {
-        return Amplify.Auth.signInWithWebUI(for: .facebook,
-                                     presentationAnchor: getWindow()!)
+    func login(provider: LoginProvider) -> AnyPublisher<LoginResult, Never> {
+        return Amplify.Auth.signInWithWebUI(for: provider.authProvider,
+                                            presentationAnchor: UIApplication.shared.firstWindow!)
             .resultPublisher
             .map { _ in LoginResult.success }
             .catch({ (authError: AuthError) -> Just<LoginResult> in
                 print(authError.debugDescription)
-                return Just(LoginResult.failure(provider: .cognito, error: authError as Error)) // FIXME: Error is not the right type
+                return Just(LoginResult.failure(error: LoginError(provider: provider, description: authError.errorDescription)))
             })
             .eraseToAnyPublisher()
     }
     
-    private func getWindow() -> UIWindow? { // TODO: remove this function
-        guard let scene = UIApplication.shared.connectedScenes.first,
-              let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
-              let window = windowSceneDelegate.window else {
-            return nil
-        }
-        return window
-    }
-    
-    func userLoggedIn() -> AnyPublisher<LoginResult, Never> { // TODO: try to change LoginResult
-        return Amplify.Auth.fetchAuthSession()
-            .resultPublisher
-            .map({ _ in LoginResult.success })
-            .catch { (authError: AuthError) in
-                return Just(LoginResult.failure(provider: .cognito, error: authError as Error)) // FIXME: Error is not the right type
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    func logout() {
+    func logout() -> AnyPublisher<Void, Never> {
         Amplify.Auth.signOut()
             .resultPublisher
-            .sink {
-                if case let .failure(authError) = $0 {
-                    print(authError.errorDescription)
-                }
-            } receiveValue: { _ in
-                AppStateHolder.instance.state = .needToLogin
+            .catch({ (authError: AuthError) -> Just<Void> in
+                print(authError.debugDescription)
+                return Just(Void())
+            })
+            .eraseToAnyPublisher()
+    }
+}
+
+extension LoginProvider {
+    var authProvider: AuthProvider {
+        get {
+            switch self {
+            case .facebook:
+                return .facebook
             }
-            .store(in: &cancellables)
+        }
     }
 }

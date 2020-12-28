@@ -10,20 +10,20 @@ import AWSMobileClient
 
 struct MainView: View {
 
-    @EnvironmentObject var stateHolder: AppStateHolder
+    @EnvironmentObject var state: AppState
     
     var body: some View {
         NavigationView {
             VStack {
                 Text("Mobile File Sharing App")
                 NavigationLink(destination: LoginView(viewModel: LoginViewModel()),
-                               tag: AppState.needToLogin,
-                               selection: Binding<AppState?>($stateHolder.state)) {
+                               tag: UserState.needToLogin,
+                               selection: Binding<UserState?>($state.userState)) {
                     EmptyView()
                 }
                 NavigationLink(destination: FilesView(),
-                               tag: AppState.loggedIn,
-                               selection: Binding<AppState?>($stateHolder.state)) {
+                               tag: UserState.loggedIn,
+                               selection: Binding<UserState?>($state.userState)) {
                     EmptyView()
                 }
             }

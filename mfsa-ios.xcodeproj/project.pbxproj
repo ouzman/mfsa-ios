@@ -16,7 +16,8 @@
 		F425A190258FFB320066C185 /* LoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F425A18F258FFB320066C185 /* LoginProvider.swift */; };
 		F425A195258FFB3E0066C185 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F425A194258FFB3E0066C185 /* LoginError.swift */; };
 		F425A19A258FFB4C0066C185 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F425A199258FFB4C0066C185 /* LoginResult.swift */; };
-		F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE08258814A1006205DE /* AppStateHolder.swift */; };
+		F44A2C6025904B6400D87ED8 /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44A2C5F25904B6400D87ED8 /* UIApplication+Ext.swift */; };
+		F470FE09258814A1006205DE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE08258814A1006205DE /* AppState.swift */; };
 		F470FE2F2588264F006205DE /* MyFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE2E2588264F006205DE /* MyFilesView.swift */; };
 		F470FE3425882661006205DE /* SharedFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE3325882661006205DE /* SharedFilesView.swift */; };
 		F470FE3A2588283E006205DE /* FolderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470FE392588283E006205DE /* FolderRow.swift */; };
@@ -31,6 +32,8 @@
 		F48025A4257CFD7800EE2040 /* mfsa_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */; };
 		F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6698C2584DBDA0017769F /* LoginView.swift */; };
 		F4C669922585092F0017769F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C669912585092F0017769F /* LoginViewModel.swift */; };
+		F4DCE165259A05150016A6F1 /* UserStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE164259A05150016A6F1 /* UserStateService.swift */; };
+		F4DCE170259A053C0016A6F1 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE16F259A053C0016A6F1 /* UserState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +69,8 @@
 		F425A18F258FFB320066C185 /* LoginProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProvider.swift; sourceTree = "<group>"; };
 		F425A194258FFB3E0066C185 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		F425A199258FFB4C0066C185 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
-		F470FE08258814A1006205DE /* AppStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateHolder.swift; sourceTree = "<group>"; };
+		F44A2C5F25904B6400D87ED8 /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
+		F470FE08258814A1006205DE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		F470FE2E2588264F006205DE /* MyFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFilesView.swift; sourceTree = "<group>"; };
 		F470FE3325882661006205DE /* SharedFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFilesView.swift; sourceTree = "<group>"; };
 		F470FE392588283E006205DE /* FolderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRow.swift; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 		F48025A5257CFD7800EE2040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4C6698C2584DBDA0017769F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F4C669912585092F0017769F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F4DCE164259A05150016A6F1 /* UserStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateService.swift; sourceTree = "<group>"; };
+		F4DCE16F259A053C0016A6F1 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,7 @@
 		F425A185258FF5090066C185 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F4DCE163259A04FE0016A6F1 /* UserState */,
 				F425A186258FF5110066C185 /* Login */,
 			);
 			path = Service;
@@ -167,6 +174,14 @@
 				F425A199258FFB4C0066C185 /* LoginResult.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F44A2C5E25904B5300D87ED8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F44A2C5F25904B6400D87ED8 /* UIApplication+Ext.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		F470FE2C2588261A006205DE /* MyFiles */ = {
@@ -221,11 +236,12 @@
 		F4802585257CFD6500EE2040 /* mfsa-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F44A2C5E25904B5300D87ED8 /* Extension */,
 				F425A185258FF5090066C185 /* Service */,
 				F4C14F5125851EEB00EC365E /* Scene */,
 				F4C14F4825851E8600EC365E /* Configuration */,
 				F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */,
-				F470FE08258814A1006205DE /* AppStateHolder.swift */,
+				F470FE08258814A1006205DE /* AppState.swift */,
 				F47247CA2590252A00F82F34 /* amplifyconfiguration.json */,
 				F480258A257CFD7800EE2040 /* Assets.xcassets */,
 				F480258C257CFD7800EE2040 /* Preview Content */,
@@ -285,6 +301,15 @@
 				F4C669912585092F0017769F /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F4DCE163259A04FE0016A6F1 /* UserState */ = {
+			isa = PBXGroup;
+			children = (
+				F4DCE164259A05150016A6F1 /* UserStateService.swift */,
+				F4DCE16F259A053C0016A6F1 /* UserState.swift */,
+			);
+			path = UserState;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -531,17 +556,20 @@
 				F410897A25858302000B9265 /* FilesView.swift in Sources */,
 				F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */,
 				F425A195258FFB3E0066C185 /* LoginError.swift in Sources */,
+				F44A2C6025904B6400D87ED8 /* UIApplication+Ext.swift in Sources */,
 				F425A190258FFB320066C185 /* LoginProvider.swift in Sources */,
 				F410897F2586511B000B9265 /* MainView.swift in Sources */,
 				F4C669922585092F0017769F /* LoginViewModel.swift in Sources */,
 				F470FE3A2588283E006205DE /* FolderRow.swift in Sources */,
+				F4DCE170259A053C0016A6F1 /* UserState.swift in Sources */,
 				F470FE2F2588264F006205DE /* MyFilesView.swift in Sources */,
 				F470FE4225882ADB006205DE /* AddFileRow.swift in Sources */,
 				F425A19A258FFB4C0066C185 /* LoginResult.swift in Sources */,
 				F470FE3425882661006205DE /* SharedFilesView.swift in Sources */,
-				F470FE09258814A1006205DE /* AppStateHolder.swift in Sources */,
+				F470FE09258814A1006205DE /* AppState.swift in Sources */,
 				F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */,
 				F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */,
+				F4DCE165259A05150016A6F1 /* UserStateService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

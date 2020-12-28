@@ -19,16 +19,9 @@ struct mfsa_iosApp: App {
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
             try Amplify.configure()
             print("Amplify configured with auth plugin")
-            LoginService.instance.userLoggedIn()
-                .sink { loginResult in
-                    switch loginResult {
-                    case .success:
-                        AppStateHolder.instance.state = .loggedIn
-                        break
-                    case .failure(_, _):
-                        AppStateHolder.instance.state = .needToLogin
-                        break
-                    }
+            UserService.instance.fetchUserState()
+                .sink { userState in
+                    AppState.instance.userState = userState
                 }
                 .store(in: &cancellables)
             
@@ -40,7 +33,7 @@ struct mfsa_iosApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(AppStateHolder.instance)
+                .environmentObject(AppState.instance)
         }
     }
 }
