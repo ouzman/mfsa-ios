@@ -9,17 +9,20 @@ import Combine
 import Amplify
 
 class UserService {
+    var cancellables = Set<AnyCancellable>()
     static let instance = UserService()
-    
-    private init() { }
     
     func fetchUserState() -> AnyPublisher<UserState, Never> {
         return Amplify.Auth.fetchAuthSession()
             .resultPublisher
-            .map({ _ in UserState.loggedIn })
-            .catch { (authError: AuthError) in
-                return Just(UserState.needToLogin)
-            }
+            .map({ session in
+                if session.isSignedIn {
+                    return .loggedIn
+                } else {
+                    return .needToLogin
+                }
+            })
+            .replaceError(with: .needToLogin)
             .eraseToAnyPublisher()
     }
 }

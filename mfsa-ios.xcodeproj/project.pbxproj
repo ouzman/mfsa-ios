@@ -32,7 +32,7 @@
 		F48025A4257CFD7800EE2040 /* mfsa_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */; };
 		F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6698C2584DBDA0017769F /* LoginView.swift */; };
 		F4C669922585092F0017769F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C669912585092F0017769F /* LoginViewModel.swift */; };
-		F4DCE165259A05150016A6F1 /* UserStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE164259A05150016A6F1 /* UserStateService.swift */; };
+		F4DCE165259A05150016A6F1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE164259A05150016A6F1 /* UserService.swift */; };
 		F4DCE170259A053C0016A6F1 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE16F259A053C0016A6F1 /* UserState.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,7 +91,7 @@
 		F48025A5257CFD7800EE2040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4C6698C2584DBDA0017769F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F4C669912585092F0017769F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		F4DCE164259A05150016A6F1 /* UserStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateService.swift; sourceTree = "<group>"; };
+		F4DCE164259A05150016A6F1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F4DCE16F259A053C0016A6F1 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -306,7 +306,7 @@
 		F4DCE163259A04FE0016A6F1 /* UserState */ = {
 			isa = PBXGroup;
 			children = (
-				F4DCE164259A05150016A6F1 /* UserStateService.swift */,
+				F4DCE164259A05150016A6F1 /* UserService.swift */,
 				F4DCE16F259A053C0016A6F1 /* UserState.swift */,
 			);
 			path = UserState;
@@ -569,7 +569,7 @@
 				F470FE09258814A1006205DE /* AppState.swift in Sources */,
 				F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */,
 				F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */,
-				F4DCE165259A05150016A6F1 /* UserStateService.swift in Sources */,
+				F4DCE165259A05150016A6F1 /* UserService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
