@@ -12,19 +12,4 @@ class AppState : ObservableObject {
     static let instance = AppState()
 
     @Published var userState : UserState = .needToLogin
-        
-    private init() {
-//        LoginService.instance.userLoggedIn()
-//            .sink { loginResult in
-//                switch loginResult {
-//                case .success:
-//                    self.state = .loggedIn
-//                    break
-//                case .failure( _, _):
-//                    self.state = .needToLogin
-//                    break
-//                }
-//            }
-//            .store(in: &cancellables)
-    }
 }

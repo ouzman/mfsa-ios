@@ -32,6 +32,7 @@
 		F48025A4257CFD7800EE2040 /* mfsa_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */; };
 		F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6698C2584DBDA0017769F /* LoginView.swift */; };
 		F4C669922585092F0017769F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C669912585092F0017769F /* LoginViewModel.swift */; };
+		F4D893B7259BDF9A0057B00E /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = F4D893B6259BDF9A0057B00E /* awsconfiguration.json */; };
 		F4DCE165259A05150016A6F1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE164259A05150016A6F1 /* UserService.swift */; };
 		F4DCE170259A053C0016A6F1 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE16F259A053C0016A6F1 /* UserState.swift */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		F48025A5257CFD7800EE2040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4C6698C2584DBDA0017769F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F4C669912585092F0017769F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F4D893B6259BDF9A0057B00E /* awsconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		F4DCE164259A05150016A6F1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F4DCE16F259A053C0016A6F1 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -242,7 +244,6 @@
 				F4C14F4825851E8600EC365E /* Configuration */,
 				F4802586257CFD6500EE2040 /* mfsa_iosApp.swift */,
 				F470FE08258814A1006205DE /* AppState.swift */,
-				F47247CA2590252A00F82F34 /* amplifyconfiguration.json */,
 				F480258A257CFD7800EE2040 /* Assets.xcassets */,
 				F480258C257CFD7800EE2040 /* Preview Content */,
 			);
@@ -278,6 +279,8 @@
 		F4C14F4825851E8600EC365E /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				F4D893B6259BDF9A0057B00E /* awsconfiguration.json */,
+				F47247CA2590252A00F82F34 /* amplifyconfiguration.json */,
 				F480258F257CFD7800EE2040 /* Info.plist */,
 			);
 			path = Configuration;
@@ -421,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D893B7259BDF9A0057B00E /* awsconfiguration.json in Resources */,
 				F480258E257CFD7800EE2040 /* Preview Assets.xcassets in Resources */,
 				F480258B257CFD7800EE2040 /* Assets.xcassets in Resources */,
 				F47247CB2590252A00F82F34 /* amplifyconfiguration.json in Resources */,
