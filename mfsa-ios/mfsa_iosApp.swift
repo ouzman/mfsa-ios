@@ -17,17 +17,19 @@ struct mfsa_iosApp: App {
     init() {
         do {
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
+            try Amplify.add(plugin: AWSS3StoragePlugin())
             try Amplify.configure()
             print("Amplify configured with auth plugin")
-            UserService.instance.fetchUserState()
-                .sink { userState in
-                    AppState.instance.userState = userState
-                }
-                .store(in: &cancellables)
-            
         } catch {
             print("Failed to initialize Amplify with \(error)")
         }
+        
+        UserService.instance.fetchUserState()
+            .receive(on: RunLoop.main)
+            .sink { userState in
+                AppState.instance.userState = userState
+            }
+            .store(in: &cancellables)
     }
     
     var body: some Scene {

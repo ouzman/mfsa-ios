@@ -12,7 +12,7 @@ struct FilesView: View {
     
     var body: some View {
         TabView(selection: $tabSelection) {
-            MyFilesView()
+            MyFilesView(viewModel: MyFilesViewModel())
                 .tabItem {
                     Image(systemName: "person")
                     Text(FilesTabs.myFiles.getTitle())

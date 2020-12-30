@@ -9,7 +9,6 @@ import Combine
 import Amplify
 
 class UserService {
-    var cancellables = Set<AnyCancellable>()
     static let instance = UserService()
     
     func fetchUserState() -> AnyPublisher<UserState, Never> {

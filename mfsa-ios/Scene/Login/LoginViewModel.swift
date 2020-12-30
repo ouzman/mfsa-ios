@@ -5,11 +5,10 @@
 //  Created by Oguzhan Uzman on 12.12.2020.
 //
 
-import SwiftUI
 import Combine
 import Amplify
 
-final class LoginViewModel: ObservableObject {
+final class LoginViewModel : ObservableObject {
     private let loginService: LoginService = LoginService.instance
     
     private var loginCancellable: Combine.Cancellable? {
@@ -37,9 +36,4 @@ final class LoginViewModel: ObservableObject {
                 }
             })
     }
-}
-
-struct ErrorAlertDetails: Error {
-    let title: String
-    let details: String
 }

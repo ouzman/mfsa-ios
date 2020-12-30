@@ -6,10 +6,9 @@ target 'mfsa-ios' do
   use_frameworks!
 
   # Pods for mfsa-ios
-  # pod 'AWSMobileClient'
   pod 'Amplify'
   pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
-  # pod 'FBSDKLoginKit'
+  pod 'AmplifyPlugins/AWSS3StoragePlugin'
 
   target 'mfsa-iosTests' do
     inherit! :search_paths

@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct MyFilesView: View {
+    @ObservedObject var viewModel: MyFilesViewModel
+    
+    init(viewModel: MyFilesViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
+        let alertActive = Binding<Bool>(
+            get: { self.viewModel.errorAlertDetails != nil },
+            set: { if !$0 { self.viewModel.errorAlertDetails = nil } }
+        )
+        
         List {
             Group {
-                AddFileRow { url in print(url) }
+                AddFileRow { url in viewModel.addFile(url: url) }
                 FolderRow(name: "Test Folder 1")
                 FolderRow(name: "Test Folder 2")
             }
@@ -28,11 +39,16 @@ struct MyFilesView: View {
                                         deleteAction: { print("delete \($0.name)") }))
             }
         }
+        .alert(isPresented: alertActive, content: {
+            Alert(title: Text(self.viewModel.errorAlertDetails!.title),
+                  message: Text(self.viewModel.errorAlertDetails!.details),
+                  dismissButton: .default(Text("OK")))
+        })
     }
 }
 
 struct MyFilesView_Previews: PreviewProvider {
     static var previews: some View {
-        MyFilesView()
+        MyFilesView(viewModel: MyFilesViewModel())
     }
 }

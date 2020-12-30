@@ -30,9 +30,14 @@
 		F480258E257CFD7800EE2040 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258D257CFD7800EE2040 /* Preview Assets.xcassets */; };
 		F4802599257CFD7800EE2040 /* mfsa_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4802598257CFD7800EE2040 /* mfsa_iosTests.swift */; };
 		F48025A4257CFD7800EE2040 /* mfsa_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */; };
+		F49F56F0259C708000BC4ADE /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F56EF259C708000BC4ADE /* UserError.swift */; };
 		F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6698C2584DBDA0017769F /* LoginView.swift */; };
 		F4C669922585092F0017769F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C669912585092F0017769F /* LoginViewModel.swift */; };
 		F4D893B7259BDF9A0057B00E /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = F4D893B6259BDF9A0057B00E /* awsconfiguration.json */; };
+		F4D893C2259BEDB30057B00E /* MyFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D893C1259BEDB30057B00E /* MyFilesViewModel.swift */; };
+		F4D893D7259BF0900057B00E /* RemoteFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D893D6259BF0900057B00E /* RemoteFileService.swift */; };
+		F4D893DC259BF14E0057B00E /* RemoteFileError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D893DB259BF14E0057B00E /* RemoteFileError.swift */; };
+		F4D893E1259BFD100057B00E /* ErrorAlertDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D893E0259BFD100057B00E /* ErrorAlertDetails.swift */; };
 		F4DCE165259A05150016A6F1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE164259A05150016A6F1 /* UserService.swift */; };
 		F4DCE170259A053C0016A6F1 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCE16F259A053C0016A6F1 /* UserState.swift */; };
 /* End PBXBuildFile section */
@@ -90,9 +95,14 @@
 		F480259F257CFD7800EE2040 /* mfsa-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mfsa-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mfsa_iosUITests.swift; sourceTree = "<group>"; };
 		F48025A5257CFD7800EE2040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F49F56EF259C708000BC4ADE /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
 		F4C6698C2584DBDA0017769F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F4C669912585092F0017769F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F4D893B6259BDF9A0057B00E /* awsconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		F4D893C1259BEDB30057B00E /* MyFilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFilesViewModel.swift; sourceTree = "<group>"; };
+		F4D893D6259BF0900057B00E /* RemoteFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileService.swift; sourceTree = "<group>"; };
+		F4D893DB259BF14E0057B00E /* RemoteFileError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileError.swift; sourceTree = "<group>"; };
+		F4D893E0259BFD100057B00E /* ErrorAlertDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertDetails.swift; sourceTree = "<group>"; };
 		F4DCE164259A05150016A6F1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F4DCE16F259A053C0016A6F1 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,7 +171,8 @@
 		F425A185258FF5090066C185 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				F4DCE163259A04FE0016A6F1 /* UserState */,
+				F4D893D5259BF0820057B00E /* RemoteFile */,
+				F4DCE163259A04FE0016A6F1 /* User */,
 				F425A186258FF5110066C185 /* Login */,
 			);
 			path = Service;
@@ -190,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				F470FE2E2588264F006205DE /* MyFilesView.swift */,
+				F4D893C1259BEDB30057B00E /* MyFilesViewModel.swift */,
 			);
 			path = MyFiles;
 			sourceTree = "<group>";
@@ -293,6 +305,7 @@
 				F4108975258582E9000B9265 /* Files */,
 				F470FE3825882828006205DE /* Component */,
 				F410897E2586511B000B9265 /* MainView.swift */,
+				F4D893E0259BFD100057B00E /* ErrorAlertDetails.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -306,13 +319,23 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		F4DCE163259A04FE0016A6F1 /* UserState */ = {
+		F4D893D5259BF0820057B00E /* RemoteFile */ = {
+			isa = PBXGroup;
+			children = (
+				F4D893D6259BF0900057B00E /* RemoteFileService.swift */,
+				F4D893DB259BF14E0057B00E /* RemoteFileError.swift */,
+			);
+			path = RemoteFile;
+			sourceTree = "<group>";
+		};
+		F4DCE163259A04FE0016A6F1 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				F4DCE164259A05150016A6F1 /* UserService.swift */,
 				F4DCE16F259A053C0016A6F1 /* UserState.swift */,
+				F49F56EF259C708000BC4ADE /* UserError.swift */,
 			);
-			path = UserState;
+			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -559,21 +582,26 @@
 				F47909F4258FDBB5008317D8 /* FileRow.swift in Sources */,
 				F410897A25858302000B9265 /* FilesView.swift in Sources */,
 				F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */,
+				F4D893DC259BF14E0057B00E /* RemoteFileError.swift in Sources */,
 				F425A195258FFB3E0066C185 /* LoginError.swift in Sources */,
 				F44A2C6025904B6400D87ED8 /* UIApplication+Ext.swift in Sources */,
 				F425A190258FFB320066C185 /* LoginProvider.swift in Sources */,
 				F410897F2586511B000B9265 /* MainView.swift in Sources */,
 				F4C669922585092F0017769F /* LoginViewModel.swift in Sources */,
 				F470FE3A2588283E006205DE /* FolderRow.swift in Sources */,
+				F49F56F0259C708000BC4ADE /* UserError.swift in Sources */,
+				F4D893C2259BEDB30057B00E /* MyFilesViewModel.swift in Sources */,
 				F4DCE170259A053C0016A6F1 /* UserState.swift in Sources */,
 				F470FE2F2588264F006205DE /* MyFilesView.swift in Sources */,
 				F470FE4225882ADB006205DE /* AddFileRow.swift in Sources */,
 				F425A19A258FFB4C0066C185 /* LoginResult.swift in Sources */,
 				F470FE3425882661006205DE /* SharedFilesView.swift in Sources */,
+				F4D893E1259BFD100057B00E /* ErrorAlertDetails.swift in Sources */,
 				F470FE09258814A1006205DE /* AppState.swift in Sources */,
 				F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */,
 				F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */,
 				F4DCE165259A05150016A6F1 /* UserService.swift in Sources */,
+				F4D893D7259BF0900057B00E /* RemoteFileService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
