@@ -58,6 +58,14 @@ final class RemoteFileService {
             .eraseToAnyPublisher()
     }
     
+    func deleteFile(fileKey: String) -> AnyPublisher<Void, RemoteFileError> {
+        return Amplify.Storage.remove(key: fileKey, options: StorageRemoveRequest.Options.init(accessLevel: .protected))
+            .resultPublisher
+            .map { (_: String) -> Void in }
+            .mapError { RemoteFileError.storageError(error: $0) }
+            .eraseToAnyPublisher()
+    }
+    
     private func getMetadata(from key: String) -> AnyPublisher<[String:String], RemoteFileError> {
         return getEscapeHatch()
             .zip(generateMetadataRequest(fileKey: key, bucketName: "mfsa-files"))

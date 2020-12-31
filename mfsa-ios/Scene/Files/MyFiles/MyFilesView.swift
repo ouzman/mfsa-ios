@@ -28,7 +28,7 @@ struct MyFilesView: View {
 //                                         selectionAction: { file in print("selection \(file.name)")},
                                         downloadAction: { file in print("download \(file.name)") },
                                         shareAction: { file in print("share \(file.name)") },
-                                        deleteAction: { file in print("delete \(file.name)") }))
+                                        deleteAction: { file in self.viewModel.deleteFile(fileKey: file.id) }))
             }
         }
         .onAppear(perform: { viewModel.retrieveFiles() })

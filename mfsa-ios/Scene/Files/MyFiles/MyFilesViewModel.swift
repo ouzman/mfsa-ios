@@ -55,4 +55,21 @@ final class MyFilesViewModel : ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func deleteFile(fileKey: String) {
+        RemoteFileService.instance.deleteFile(fileKey: fileKey)
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.errorAlertDetails = ErrorAlertDetails(title: "Delete File Error", details: error.description)
+                    break
+                }
+            } receiveValue: {
+                self.retrieveFiles()
+            }
+            .store(in: &cancellables)
+    }
 }
