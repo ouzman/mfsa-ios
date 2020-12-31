@@ -35,4 +35,21 @@ final class MyFilesViewModel : ObservableObject  {
             .sink(receiveValue: { print($0) })
             .store(in: &cancellables)
     }
+    
+    func retrieveFiles() {
+        RemoteFileService.instance.listFiles()
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.errorAlertDetails = ErrorAlertDetails(title: "Retrieve Files Error", details: error.description)
+                    break
+                }
+            } receiveValue: { (remoteFile) in
+                print(remoteFile)
+            }
+            .store(in: &cancellables)
+    }
 }

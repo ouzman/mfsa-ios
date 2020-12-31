@@ -30,6 +30,7 @@
 		F480258E257CFD7800EE2040 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F480258D257CFD7800EE2040 /* Preview Assets.xcassets */; };
 		F4802599257CFD7800EE2040 /* mfsa_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4802598257CFD7800EE2040 /* mfsa_iosTests.swift */; };
 		F48025A4257CFD7800EE2040 /* mfsa_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */; };
+		F491807D259CD28E00D48078 /* RemoteFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F491807C259CD28E00D48078 /* RemoteFileModel.swift */; };
 		F49F56F0259C708000BC4ADE /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F56EF259C708000BC4ADE /* UserError.swift */; };
 		F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6698C2584DBDA0017769F /* LoginView.swift */; };
 		F4C669922585092F0017769F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C669912585092F0017769F /* LoginViewModel.swift */; };
@@ -95,6 +96,7 @@
 		F480259F257CFD7800EE2040 /* mfsa-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mfsa-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mfsa_iosUITests.swift; sourceTree = "<group>"; };
 		F48025A5257CFD7800EE2040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F491807C259CD28E00D48078 /* RemoteFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileModel.swift; sourceTree = "<group>"; };
 		F49F56EF259C708000BC4ADE /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
 		F4C6698C2584DBDA0017769F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F4C669912585092F0017769F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 			children = (
 				F4D893D6259BF0900057B00E /* RemoteFileService.swift */,
 				F4D893DB259BF14E0057B00E /* RemoteFileError.swift */,
+				F491807C259CD28E00D48078 /* RemoteFileModel.swift */,
 			);
 			path = RemoteFile;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				F410897F2586511B000B9265 /* MainView.swift in Sources */,
 				F4C669922585092F0017769F /* LoginViewModel.swift in Sources */,
 				F470FE3A2588283E006205DE /* FolderRow.swift in Sources */,
+				F491807D259CD28E00D48078 /* RemoteFileModel.swift in Sources */,
 				F49F56F0259C708000BC4ADE /* UserError.swift in Sources */,
 				F4D893C2259BEDB30057B00E /* MyFilesViewModel.swift in Sources */,
 				F4DCE170259A053C0016A6F1 /* UserState.swift in Sources */,

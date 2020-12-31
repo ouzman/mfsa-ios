@@ -39,6 +39,7 @@ struct MyFilesView: View {
                                         deleteAction: { print("delete \($0.name)") }))
             }
         }
+        .onAppear(perform: { viewModel.retrieveFiles() })
         .alert(isPresented: alertActive, content: {
             Alert(title: Text(self.viewModel.errorAlertDetails!.title),
                   message: Text(self.viewModel.errorAlertDetails!.details),
