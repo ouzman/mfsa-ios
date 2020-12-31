@@ -25,8 +25,7 @@ struct MyFilesView: View {
             ForEach(self.viewModel.fileList, id: \.self) { (file: RemoteFileModel) in
                 FileRow(file: FileModel(id: file.key,
                                         name: file.fileName,
-//                                         selectionAction: { file in print("selection \(file.name)")},
-                                        downloadAction: { file in print("download \(file.name)") },
+                                        downloadAction: { file in self.viewModel.downloadFile(fileKey: file.id) },
                                         shareAction: { file in print("share \(file.name)") },
                                         deleteAction: { file in self.viewModel.deleteFile(fileKey: file.id) }))
             }

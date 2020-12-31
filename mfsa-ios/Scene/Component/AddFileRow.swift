@@ -36,7 +36,7 @@ struct AddFileRow: View {
     }
     
     private func openFileChooser() {
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.item])
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.item], asCopy: true)
         picker.allowsMultipleSelection = false
         picker.delegate = self.pickerDelegate
         

@@ -32,6 +32,7 @@
 		F48025A4257CFD7800EE2040 /* mfsa_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48025A3257CFD7800EE2040 /* mfsa_iosUITests.swift */; };
 		F491807D259CD28E00D48078 /* RemoteFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F491807C259CD28E00D48078 /* RemoteFileModel.swift */; };
 		F4918082259DCAD900D48078 /* Publisher+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4918081259DCAD900D48078 /* Publisher+Ext.swift */; };
+		F491809D259E70BD00D48078 /* FileChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F491809C259E70BD00D48078 /* FileChooser.swift */; };
 		F49F56F0259C708000BC4ADE /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F56EF259C708000BC4ADE /* UserError.swift */; };
 		F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6698C2584DBDA0017769F /* LoginView.swift */; };
 		F4C669922585092F0017769F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C669912585092F0017769F /* LoginViewModel.swift */; };
@@ -99,6 +100,7 @@
 		F48025A5257CFD7800EE2040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F491807C259CD28E00D48078 /* RemoteFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileModel.swift; sourceTree = "<group>"; };
 		F4918081259DCAD900D48078 /* Publisher+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Ext.swift"; sourceTree = "<group>"; };
+		F491809C259E70BD00D48078 /* FileChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileChooser.swift; sourceTree = "<group>"; };
 		F49F56EF259C708000BC4ADE /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
 		F4C6698C2584DBDA0017769F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F4C669912585092F0017769F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				F47909F3258FDBB5008317D8 /* FileRow.swift */,
 				F470FE4125882ADB006205DE /* AddFileRow.swift */,
 				F47909EE258FA2F8008317D8 /* LogoutButton.swift */,
+				F491809C259E70BD00D48078 /* FileChooser.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				F47909EF258FA2F8008317D8 /* LogoutButton.swift in Sources */,
 				F4D893DC259BF14E0057B00E /* RemoteFileError.swift in Sources */,
 				F425A195258FFB3E0066C185 /* LoginError.swift in Sources */,
+				F491809D259E70BD00D48078 /* FileChooser.swift in Sources */,
 				F44A2C6025904B6400D87ED8 /* UIApplication+Ext.swift in Sources */,
 				F425A190258FFB320066C185 /* LoginProvider.swift in Sources */,
 				F410897F2586511B000B9265 /* MainView.swift in Sources */,
@@ -770,6 +774,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"mfsa-ios/Preview Content\"";
+				DEVELOPMENT_TEAM = VPT6HS76H4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "mfsa-ios/Configuration/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -794,6 +799,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"mfsa-ios/Preview Content\"";
+				DEVELOPMENT_TEAM = VPT6HS76H4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "mfsa-ios/Configuration/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

@@ -10,7 +10,7 @@ import Foundation
 
 final class MyFilesViewModel : ObservableObject {
     private var cancellables = Set<AnyCancellable>()
-    
+
     @Published var errorAlertDetails: ErrorAlertDetails? = nil
     @Published var fileList: [RemoteFileModel] = []
     
@@ -70,6 +70,24 @@ final class MyFilesViewModel : ObservableObject {
             } receiveValue: {
                 self.retrieveFiles()
             }
+            .store(in: &cancellables)
+    }
+    
+    func downloadFile(fileKey: String) {
+        FileChooser.instance.openDownloadFileLocationPicker(delegate: FileChooser.PickDownloadFileLocationDelegate())
+            .flatMap { (url: URL) -> AnyPublisher<Void, RemoteFileError> in
+                return RemoteFileService.instance.downloadFile(fileKey: fileKey, localDirectory: url)
+            }
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.errorAlertDetails = ErrorAlertDetails(title: "Delete File Error", details: error.description)
+                    break
+                }
+            } receiveValue: { }
             .store(in: &cancellables)
     }
 }
