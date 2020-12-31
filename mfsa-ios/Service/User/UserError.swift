@@ -9,12 +9,15 @@ import Amplify
 
 enum UserError: Error {
     case authError(error: AuthError)
+    case authSessionIsNotCredentialProvider
     
     var description: String {
         get {
             switch self {
             case .authError(let error):
                 return error.errorDescription
+            case .authSessionIsNotCredentialProvider:
+                return "Current auth session is not a credential provider"
             }
         }
     }

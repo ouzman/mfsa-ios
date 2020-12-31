@@ -7,6 +7,7 @@
 
 import Combine
 import Amplify
+import AWSPluginsCore
 
 class UserService {
     static let instance = UserService()
@@ -22,6 +23,28 @@ class UserService {
                 }
             })
             .replaceError(with: .needToLogin)
+            .eraseToAnyPublisher()
+    }
+    
+    func getCurrentUserSub() -> AnyPublisher<String, UserError> {
+        Amplify.Auth.fetchAuthSession()
+            .resultPublisher
+            .mapError { UserError.authError(error: $0) }
+            .flatMap { session -> Future<AuthCognitoIdentityProvider, UserError> in
+                return Future<AuthCognitoIdentityProvider, UserError> { promise in
+                    if let identityProvider = session as? AuthCognitoIdentityProvider {
+                        promise(.success(identityProvider))
+                    } else {
+                        promise(.failure(UserError.authSessionIsNotCredentialProvider))
+                    }
+                }
+            }
+            .flatMap { (provider: AuthCognitoIdentityProvider) -> AnyPublisher<String, UserError> in
+                return provider.getIdentityId()
+                    .publisher
+                    .mapError { UserError.authError(error: $0) }
+                    .eraseToAnyPublisher()
+            }
             .eraseToAnyPublisher()
     }
 }

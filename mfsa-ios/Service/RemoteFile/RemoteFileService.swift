@@ -12,7 +12,9 @@ import AmplifyPlugins
 import AWSS3
 
 final class RemoteFileService {
+    private static let ORIGINAL_FILE_NAME_METADATA_KEY = "original-file-name"
     static let instance = RemoteFileService()
+    
     
     private init() { }
     
@@ -41,18 +43,14 @@ final class RemoteFileService {
                     .eraseToAnyPublisher()
             }
             .mapError { RemoteFileError.storageError(error: $0) }
-            // .map { RemoteFileModel (key: $0.key, fileName: $0.key, metadata: [:]) } // FIXME
-            .map { (item: StorageListResult.Item) in
-                let startIndex = item.key.index(item.key.startIndex, offsetBy: 37)
-                let endIndex = item.key.endIndex
-                let temporaryFileName = item.key[startIndex..<endIndex]
-                return RemoteFileModel(key: item.key, fileName: String(temporaryFileName), metadata: [:]) // FIXME
+            .flatMap { (item: StorageListResult.Item) -> AnyPublisher<RemoteFileModel, RemoteFileError> in
+                self.getMetadata(from: item.key)
+                    .map { (metadata: [String:String]) -> RemoteFileModel in
+                        return RemoteFileModel(key: item.key,
+                                               fileName: metadata[Self.ORIGINAL_FILE_NAME_METADATA_KEY] ?? "",
+                                               metadata: metadata) }
+                    .eraseToAnyPublisher()
             }
-//            .flatMap { (item: StorageListResult.Item) -> AnyPublisher<RemoteFileModel, RemoteFileError> in
-//                self.getMetadata(from: item.key)
-//                    .map { (metadata: [String:String]) -> RemoteFileModel in RemoteFileModel(key: item.key, metadata: metadata) }
-//                    .eraseToAnyPublisher()
-//            }
             .collect()
             .sort { $0.fileName < $1.fileName }
             .eraseToAnyPublisher()
@@ -86,16 +84,27 @@ final class RemoteFileService {
             .eraseToAnyPublisher()
     }
     
-    private func generateMetadataRequest(fileKey: String, bucketName: String) -> Future<AWSS3HeadObjectRequest, RemoteFileError> {
-        return Future<AWSS3HeadObjectRequest, RemoteFileError>() { promise in
-            if let request = AWSS3HeadObjectRequest() {
-                request.bucket = bucketName
-                request.key = fileKey
-                promise(.success(request))
-            } else {
-                promise(.failure(RemoteFileError.buildMetadataRequestError))
+    private func getNativeFileKey(fileKey: String) -> AnyPublisher<String, RemoteFileError> {
+        return UserService.instance.getCurrentUserSub()
+            .mapError { RemoteFileError.userError(error: $0) }
+            .map { (sub) in "protected/\(sub)/\(fileKey)" }
+            .eraseToAnyPublisher()
+    }
+    
+    private func generateMetadataRequest(fileKey: String, bucketName: String) -> AnyPublisher<AWSS3HeadObjectRequest, RemoteFileError> {
+        self.getNativeFileKey(fileKey: fileKey)
+            .flatMap { (nativeFileKey) -> Future<AWSS3HeadObjectRequest, RemoteFileError> in
+                return Future<AWSS3HeadObjectRequest, RemoteFileError>() { promise in
+                    if let request = AWSS3HeadObjectRequest() {
+                        request.bucket = bucketName
+                        request.key = nativeFileKey
+                        promise(.success(request))
+                    } else {
+                        promise(.failure(RemoteFileError.buildMetadataRequestError))
+                    }
+                }
             }
-        }
+            .eraseToAnyPublisher()
     }
     
     private func generateFileKey(_ url: URL) -> String {
@@ -104,7 +113,7 @@ final class RemoteFileService {
     
     private func generateOptions(_ url: URL) -> StorageUploadFileRequest.Options {
         return StorageUploadFileRequest.Options.init(accessLevel: .protected,
-                                                     metadata: ["original-file-name": url.lastPathComponent])
+                                                     metadata: [Self.ORIGINAL_FILE_NAME_METADATA_KEY: url.lastPathComponent])
     }
     
     private func getEscapeHatch() -> Future<AWSS3, RemoteFileError>{

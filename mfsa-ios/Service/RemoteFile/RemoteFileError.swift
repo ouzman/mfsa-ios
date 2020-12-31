@@ -14,6 +14,7 @@ enum RemoteFileError : Error {
     case buildMetadataRequestError
     case retrieveMetadataError(error: Error)
     case retrieveMetadataUnknownError
+    case userError(error: UserError)
     
     var description: String {
         get {
@@ -28,6 +29,8 @@ enum RemoteFileError : Error {
                 return error.localizedDescription
             case .retrieveMetadataUnknownError:
                 return "Unknown error occurred when retrieving metadata"
+            case .userError(let error):
+                return error.description
             }
         }
     }
