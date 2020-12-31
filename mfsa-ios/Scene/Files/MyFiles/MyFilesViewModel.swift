@@ -10,6 +10,7 @@ import Foundation
 
 final class MyFilesViewModel : ObservableObject {
     private var cancellables = Set<AnyCancellable>()
+    private var delegate = FileChooser.PickDownloadFileLocationDelegate()
 
     @Published var errorAlertDetails: ErrorAlertDetails? = nil
     @Published var fileList: [RemoteFileModel] = []
@@ -73,10 +74,10 @@ final class MyFilesViewModel : ObservableObject {
             .store(in: &cancellables)
     }
     
-    func downloadFile(fileKey: String) {
-        FileChooser.instance.openDownloadFileLocationPicker(delegate: FileChooser.PickDownloadFileLocationDelegate())
+    func downloadFile(fileKey: String, fileName: String) {
+        FileChooser.instance.openDownloadFileLocationPicker(delegate: self.delegate)
             .flatMap { (url: URL) -> AnyPublisher<Void, RemoteFileError> in
-                return RemoteFileService.instance.downloadFile(fileKey: fileKey, localDirectory: url)
+                return RemoteFileService.instance.downloadFile(fileKey: fileKey, localDirectory: url, fileName: fileName)
             }
             .receive(on: RunLoop.main)
             .sink { completion in

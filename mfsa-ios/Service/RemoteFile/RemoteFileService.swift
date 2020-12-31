@@ -64,9 +64,16 @@ final class RemoteFileService {
             .eraseToAnyPublisher()
     }
     
-    func downloadFile(fileKey: String, localDirectory: URL) -> AnyPublisher<Void, RemoteFileError> {
-        return Amplify.Storage.downloadFile(key: fileKey, local: localDirectory, options: StorageDownloadFileRequest.Options.init(accessLevel: .protected))
+    func downloadFile(fileKey: String, localDirectory: URL, fileName: String) -> AnyPublisher<Void, RemoteFileError> {
+        let _ = localDirectory.startAccessingSecurityScopedResource()
+        return Amplify.Storage.downloadFile(key: fileKey,
+                                            local: localDirectory.appendingPathComponent(fileName),
+                                            options: StorageDownloadFileRequest.Options.init(accessLevel: .protected))
             .resultPublisher
+            .map { _ in
+                let _ = localDirectory.stopAccessingSecurityScopedResource()
+                return
+            }
             .mapError { RemoteFileError.storageError(error: $0) }
             .eraseToAnyPublisher()
     }

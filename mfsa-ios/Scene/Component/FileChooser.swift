@@ -17,6 +17,7 @@ class FileChooser {
         
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
         picker.allowsMultipleSelection = false
+        picker.directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         picker.delegate = delegate
         
         UIApplication.shared.windows.first?.rootViewController?.present(picker, animated: true)
