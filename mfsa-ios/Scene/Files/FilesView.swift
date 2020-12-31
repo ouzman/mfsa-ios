@@ -12,14 +12,14 @@ struct FilesView: View {
     
     var body: some View {
         TabView(selection: $tabSelection) {
-            MyFilesView(viewModel: MyFilesViewModel())
+            self.myFilesView
                 .tabItem {
                     Image(systemName: "person")
                     Text(FilesTabs.myFiles.getTitle())
                 }
                 .tag(FilesTabs.myFiles)
             
-            SharedFilesView()
+            self.sharedFilesView
                 .tabItem {
                     Image(systemName: "person.2")
                     Text(FilesTabs.sharedWithMe.getTitle())
@@ -30,6 +30,9 @@ struct FilesView: View {
         .navigationBarItems(trailing: LogoutButton())
         .navigationTitle(self.tabSelection.getTitle())
     }
+    
+    let myFilesView = MyFilesView()
+    let sharedFilesView = SharedFilesView()
 }
 
 enum FilesTabs {

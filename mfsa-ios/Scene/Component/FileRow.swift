@@ -52,49 +52,56 @@ struct FileRow: View {
 struct FileRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FileRow(file: FileModel(name: "File has just name",
+            FileRow(file: FileModel(id: "id",
+                                    name: "File has just name",
                                     selectionAction: { _ in }))
                 .previewLayout(.sizeThatFits)
                 .padding()
-
-            FileRow(file: FileModel(name: "File user can download",
+            
+            FileRow(file: FileModel(id: "id",
+                                    name: "File user can download",
                                     selectionAction: { _ in },
                                     downloadAction: { _ in print("download") }))
                 .previewLayout(.sizeThatFits)
                 .padding()
             
-            FileRow(file: FileModel(name: "File user can download and share",
+            FileRow(file: FileModel(id: "id",
+                                    name: "File user can download and share",
                                     selectionAction: { _ in },
                                     downloadAction: { _ in print("download action") },
                                     shareAction: { _ in print("share action") }))
                 .previewLayout(.sizeThatFits)
                 .padding()
-
-            FileRow(file: FileModel(name: "File user can download, share and delete",
+            
+            FileRow(file: FileModel(id: "id",
+                                    name: "File user can download, share and delete",
                                     selectionAction: { _ in },
                                     downloadAction: { _ in print("download action") },
                                     shareAction: { _ in print("share action") },
                                     deleteAction: { _ in print("delete action") }))
                 .previewLayout(.sizeThatFits)
                 .padding()
-
+            
         }
     }
 }
 
-struct FileModel {
+struct FileModel: Identifiable {
+    let id: String
     let name: String
     let selectionAction: ((FileModel) -> Void)?
     let downloadAction: ((FileModel) -> Void)?
     let shareAction: ((FileModel) -> Void)?
     let deleteAction: ((FileModel) -> Void)?
     
-    init(name: String,
+    init(id: String,
+         name: String,
          selectionAction: ((FileModel) -> Void)? = nil,
          downloadAction: ((FileModel) -> Void)? = nil,
          shareAction: ((FileModel) -> Void)? = nil,
          deleteAction: ((FileModel) -> Void)? = nil
     ) {
+        self.id = id
         self.name = name
         self.selectionAction = selectionAction
         self.downloadAction = downloadAction

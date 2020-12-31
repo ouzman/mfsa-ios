@@ -10,9 +10,11 @@ import SwiftUI
 struct SharedFilesView: View {
     var body: some View {
         List {
-            FileRow(file: FileModel(name: "Shared File 1",
+            FileRow(file: FileModel(id: "id",
+                                    name: "Shared File 1",
                                     downloadAction: { print("download \($0.name)") }))
-            FileRow(file: FileModel(name: "Shared File 2",
+            FileRow(file: FileModel(id: "id",
+                                    name: "Shared File 2",
                                     downloadAction: { print("download \($0.name)") }))
         }
     }

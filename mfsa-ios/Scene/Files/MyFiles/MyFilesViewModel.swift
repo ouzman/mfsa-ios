@@ -8,10 +8,11 @@
 import Combine
 import Foundation
 
-final class MyFilesViewModel : ObservableObject  {
+final class MyFilesViewModel : ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     @Published var errorAlertDetails: ErrorAlertDetails? = nil
+    @Published var fileList: [RemoteFileModel] = []
     
     func addFile(url: URL) {
         let (resultPublisher, progressPublisher) = RemoteFileService.instance.uploadFile(url: url)
@@ -28,7 +29,9 @@ final class MyFilesViewModel : ObservableObject  {
                         break
                     }
                 },
-                receiveValue: { print("completed") })
+                receiveValue: {
+                    self.retrieveFiles()
+                })
             .store(in: &cancellables)
         
         progressPublisher
@@ -47,8 +50,8 @@ final class MyFilesViewModel : ObservableObject  {
                     self.errorAlertDetails = ErrorAlertDetails(title: "Retrieve Files Error", details: error.description)
                     break
                 }
-            } receiveValue: { (remoteFile) in
-                print(remoteFile)
+            } receiveValue: { (remoteFiles) in
+                self.fileList = remoteFiles
             }
             .store(in: &cancellables)
     }

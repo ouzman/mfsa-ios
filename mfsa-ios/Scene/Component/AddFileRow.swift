@@ -28,7 +28,7 @@ struct AddFileRow: View {
         }
         .actionSheet(isPresented: $showActionSheet, content: {
             ActionSheet(title: Text("Please select an action"), buttons: [
-                .default(Text("Create new folder")) { self.showNewFolderNameAlert = true },
+//                .default(Text("Create new folder")) { self.showNewFolderNameAlert = true },
                 .default(Text("Upload new file")) { openFileChooser() },
                 .cancel()
             ])

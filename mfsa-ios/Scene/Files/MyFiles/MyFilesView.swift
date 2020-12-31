@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MyFilesView: View {
     @ObservedObject var viewModel: MyFilesViewModel
-    
-    init(viewModel: MyFilesViewModel) {
-        self.viewModel = viewModel
+
+    init() {
+        self.viewModel = MyFilesViewModel()
     }
     
     var body: some View {
@@ -21,22 +21,14 @@ struct MyFilesView: View {
         )
         
         List {
-            Group {
-                AddFileRow { url in viewModel.addFile(url: url) }
-                FolderRow(name: "Test Folder 1")
-                FolderRow(name: "Test Folder 2")
-            }
-            Group {
-                FileRow(file: FileModel(name: "File 1",
-                                        selectionAction: { print("selection \($0.name)")},
-                                        downloadAction: { print("download \($0.name)") },
-                                        shareAction: { print("share \($0.name)") },
-                                        deleteAction: { print("delete \($0.name)") }))
-                FileRow(file: FileModel(name: "File 2",
-                                        selectionAction: { print("selection \($0.name)")},
-                                        downloadAction: { print("download \($0.name)") },
-                                        shareAction: { print("share \($0.name)") },
-                                        deleteAction: { print("delete \($0.name)") }))
+            AddFileRow { url in viewModel.addFile(url: url) }
+            ForEach(self.viewModel.fileList, id: \.self) { (file: RemoteFileModel) in
+                FileRow(file: FileModel(id: file.key,
+                                        name: file.fileName,
+//                                         selectionAction: { file in print("selection \(file.name)")},
+                                        downloadAction: { file in print("download \(file.name)") },
+                                        shareAction: { file in print("share \(file.name)") },
+                                        deleteAction: { file in print("delete \(file.name)") }))
             }
         }
         .onAppear(perform: { viewModel.retrieveFiles() })
@@ -50,6 +42,6 @@ struct MyFilesView: View {
 
 struct MyFilesView_Previews: PreviewProvider {
     static var previews: some View {
-        MyFilesView(viewModel: MyFilesViewModel())
+        MyFilesView()
     }
 }

@@ -32,7 +32,7 @@ final class RemoteFileService {
         return (resultPublisher, progressPublisher)
     }
     
-    func listFiles() -> AnyPublisher<RemoteFileModel, RemoteFileError> {
+    func listFiles() -> AnyPublisher<[RemoteFileModel], RemoteFileError> {
         
         return Amplify.Storage.list(options: StorageListRequest.Options(accessLevel: .protected))
             .resultPublisher
@@ -41,12 +41,20 @@ final class RemoteFileService {
                     .eraseToAnyPublisher()
             }
             .mapError { RemoteFileError.storageError(error: $0) }
-            .map { RemoteFileModel (key: $0.key, metadata: [:]) } // FIXME
+            // .map { RemoteFileModel (key: $0.key, fileName: $0.key, metadata: [:]) } // FIXME
+            .map { (item: StorageListResult.Item) in
+                let startIndex = item.key.index(item.key.startIndex, offsetBy: 37)
+                let endIndex = item.key.endIndex
+                let temporaryFileName = item.key[startIndex..<endIndex]
+                return RemoteFileModel(key: item.key, fileName: String(temporaryFileName), metadata: [:]) // FIXME
+            }
 //            .flatMap { (item: StorageListResult.Item) -> AnyPublisher<RemoteFileModel, RemoteFileError> in
 //                self.getMetadata(from: item.key)
 //                    .map { (metadata: [String:String]) -> RemoteFileModel in RemoteFileModel(key: item.key, metadata: metadata) }
 //                    .eraseToAnyPublisher()
 //            }
+            .collect()
+            .sort { $0.fileName < $1.fileName }
             .eraseToAnyPublisher()
     }
     
