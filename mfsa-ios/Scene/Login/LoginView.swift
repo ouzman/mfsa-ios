@@ -28,7 +28,7 @@ struct LoginView: View {
                 .padding()
             self.loginButtons
                 .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity,
-                       maxHeight: 80,
+                       maxHeight: 40,
                        alignment: .center)
                 .padding(.all)
                 .padding(.bottom, 20)
@@ -96,8 +96,8 @@ struct LoginView: View {
     var loginButtons : some View {
         VStack {
             self.facebookButton
-            Spacer()
-            self.twitterButton
+//            Spacer()
+//            self.twitterButton
         }
     }
 }

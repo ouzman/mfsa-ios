@@ -16,10 +16,10 @@ struct SharedFilesView: View {
     
     var body: some View {
         List {
-            ForEach(self.viewModel.sharedFileList, id: \.self) { (file: RemoteFileModel) in
-                FileRow(file: FileModel(id: file.key,
-                                        name: file.fileName,
-                                        downloadAction: { file in print(file) }))
+            ForEach(self.viewModel.sharedFileList, id: \.self) { (remoteFile: RemoteFileModel) in
+                FileRow(file: FileModel(id: remoteFile.key,
+                                        name: remoteFile.fileName,
+                                        downloadAction: { file in self.viewModel.downloadSharedFile(fileKey: remoteFile.key, owner: remoteFile.owner, fileName: remoteFile.fileName) }))
             }
         }
         .onAppear { self.viewModel.retrieveSharedFiles() }

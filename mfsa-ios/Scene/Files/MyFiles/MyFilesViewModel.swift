@@ -31,6 +31,7 @@ final class MyFilesViewModel : ObservableObject {
                     }
                 },
                 receiveValue: {
+                    self.errorAlertDetails = ErrorAlertDetails(title: "Add File", details: "Upload completed")
                     self.retrieveFiles()
                 })
             .store(in: &cancellables)
@@ -66,10 +67,11 @@ final class MyFilesViewModel : ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.errorAlertDetails = ErrorAlertDetails(title: "Delete File Error", details: error.description)
+                    self.errorAlertDetails = ErrorAlertDetails(title: "File Delete Error", details: error.description)
                     break
                 }
             } receiveValue: {
+                self.errorAlertDetails = ErrorAlertDetails(title: "Delete File", details: "Successfully deleted")
                 self.retrieveFiles()
             }
             .store(in: &cancellables)
@@ -86,10 +88,12 @@ final class MyFilesViewModel : ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.errorAlertDetails = ErrorAlertDetails(title: "Delete File Error", details: error.description)
+                    self.errorAlertDetails = ErrorAlertDetails(title: "File Download Error", details: error.description)
                     break
                 }
-            } receiveValue: { }
+            } receiveValue: {
+                self.errorAlertDetails = ErrorAlertDetails(title: "Download File", details: "Download completed")
+            }
             .store(in: &cancellables)
     }
     
@@ -101,12 +105,11 @@ final class MyFilesViewModel : ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.errorAlertDetails = ErrorAlertDetails(title: "Share Error", details: error.description)
+                    self.errorAlertDetails = ErrorAlertDetails(title: "File Share Error", details: error.description)
                     break
                 }
             } receiveValue: {
-                self.errorAlertDetails = ErrorAlertDetails(title: "Share", details: "File successfully shared 🎉")
-                print("share file completed")
+                self.errorAlertDetails = ErrorAlertDetails(title: "Share File", details: "File successfully shared")
             }
             .store(in: &cancellables) 
     }
