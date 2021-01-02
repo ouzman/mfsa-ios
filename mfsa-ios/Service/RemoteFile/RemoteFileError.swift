@@ -15,7 +15,10 @@ enum RemoteFileError : Error {
     case retrieveMetadataError(error: Error)
     case retrieveMetadataUnknownError
     case userError(error: UserError)
-    
+    case apiError(error: APIError)
+    case testError(error: Error)
+    case testUnknownError
+
     var description: String {
         get {
             switch self {
@@ -31,6 +34,12 @@ enum RemoteFileError : Error {
                 return "Unknown error occurred when retrieving metadata"
             case .userError(let error):
                 return error.description
+            case .apiError(let error):
+                return error.errorDescription
+            case .testError(let error):
+                return error.localizedDescription
+            case .testUnknownError:
+                return "Unknown error occurred when testing"
             }
         }
     }

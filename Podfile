@@ -9,6 +9,7 @@ target 'mfsa-ios' do
   pod 'Amplify'
   pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
   pod 'AmplifyPlugins/AWSS3StoragePlugin'
+  pod 'AmplifyPlugins/AWSAPIPlugin'
 
   target 'mfsa-iosTests' do
     inherit! :search_paths

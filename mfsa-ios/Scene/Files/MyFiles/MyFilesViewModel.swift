@@ -91,4 +91,22 @@ final class MyFilesViewModel : ObservableObject {
             } receiveValue: { }
             .store(in: &cancellables)
     }
+    
+    func shareFile(fileKey: String, emailAddress: String) {
+        RemoteFileService.instance.shareFile(fileKey: fileKey, emailAddress: emailAddress)
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.errorAlertDetails = ErrorAlertDetails(title: "Share Error", details: error.description)
+                    break
+                }
+            } receiveValue: {
+                self.errorAlertDetails = ErrorAlertDetails(title: "Share", details: "File successfully shared 🎉")
+                print("share file completed")
+            }
+            .store(in: &cancellables) 
+    }
 }

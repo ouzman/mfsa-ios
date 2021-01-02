@@ -33,6 +33,9 @@
 		F491807D259CD28E00D48078 /* RemoteFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F491807C259CD28E00D48078 /* RemoteFileModel.swift */; };
 		F4918082259DCAD900D48078 /* Publisher+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4918081259DCAD900D48078 /* Publisher+Ext.swift */; };
 		F491809D259E70BD00D48078 /* FileChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F491809C259E70BD00D48078 /* FileChooser.swift */; };
+		F49180A8259FA8CB00D48078 /* SharedFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49180A7259FA8CA00D48078 /* SharedFilesViewModel.swift */; };
+		F49180C1259FB63A00D48078 /* CognitoIdTokenAPIAuthProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49180C0259FB63900D48078 /* CognitoIdTokenAPIAuthProviderFactory.swift */; };
+		F49180CE25A04D4A00D48078 /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49180CD25A04D4A00D48078 /* TextAlert.swift */; };
 		F49F56F0259C708000BC4ADE /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F56EF259C708000BC4ADE /* UserError.swift */; };
 		F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6698C2584DBDA0017769F /* LoginView.swift */; };
 		F4C669922585092F0017769F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C669912585092F0017769F /* LoginViewModel.swift */; };
@@ -101,6 +104,9 @@
 		F491807C259CD28E00D48078 /* RemoteFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileModel.swift; sourceTree = "<group>"; };
 		F4918081259DCAD900D48078 /* Publisher+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Ext.swift"; sourceTree = "<group>"; };
 		F491809C259E70BD00D48078 /* FileChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileChooser.swift; sourceTree = "<group>"; };
+		F49180A7259FA8CA00D48078 /* SharedFilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFilesViewModel.swift; sourceTree = "<group>"; };
+		F49180C0259FB63900D48078 /* CognitoIdTokenAPIAuthProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoIdTokenAPIAuthProviderFactory.swift; sourceTree = "<group>"; };
+		F49180CD25A04D4A00D48078 /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
 		F49F56EF259C708000BC4ADE /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
 		F4C6698C2584DBDA0017769F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F4C669912585092F0017769F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -217,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				F470FE3325882661006205DE /* SharedFilesView.swift */,
+				F49180A7259FA8CA00D48078 /* SharedFilesViewModel.swift */,
 			);
 			path = SharedFiles;
 			sourceTree = "<group>";
@@ -229,6 +236,7 @@
 				F470FE4125882ADB006205DE /* AddFileRow.swift */,
 				F47909EE258FA2F8008317D8 /* LogoutButton.swift */,
 				F491809C259E70BD00D48078 /* FileChooser.swift */,
+				F49180CD25A04D4A00D48078 /* TextAlert.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -333,6 +341,7 @@
 				F4D893D6259BF0900057B00E /* RemoteFileService.swift */,
 				F4D893DB259BF14E0057B00E /* RemoteFileError.swift */,
 				F491807C259CD28E00D48078 /* RemoteFileModel.swift */,
+				F49180C0259FB63900D48078 /* CognitoIdTokenAPIAuthProviderFactory.swift */,
 			);
 			path = RemoteFile;
 			sourceTree = "<group>";
@@ -608,12 +617,15 @@
 				F425A19A258FFB4C0066C185 /* LoginResult.swift in Sources */,
 				F4918082259DCAD900D48078 /* Publisher+Ext.swift in Sources */,
 				F470FE3425882661006205DE /* SharedFilesView.swift in Sources */,
+				F49180CE25A04D4A00D48078 /* TextAlert.swift in Sources */,
 				F4D893E1259BFD100057B00E /* ErrorAlertDetails.swift in Sources */,
+				F49180A8259FA8CB00D48078 /* SharedFilesViewModel.swift in Sources */,
 				F470FE09258814A1006205DE /* AppState.swift in Sources */,
 				F4C6698D2584DBDA0017769F /* LoginView.swift in Sources */,
 				F4802587257CFD6500EE2040 /* mfsa_iosApp.swift in Sources */,
 				F4DCE165259A05150016A6F1 /* UserService.swift in Sources */,
 				F4D893D7259BF0900057B00E /* RemoteFileService.swift in Sources */,
+				F49180C1259FB63A00D48078 /* CognitoIdTokenAPIAuthProviderFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

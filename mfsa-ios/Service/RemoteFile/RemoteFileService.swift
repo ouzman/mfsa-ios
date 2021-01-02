@@ -15,13 +15,15 @@ final class RemoteFileService {
     private static let ORIGINAL_FILE_NAME_METADATA_KEY = "original-file-name"
     static let instance = RemoteFileService()
     
+    private var cancellables = Set<AnyCancellable>()
+    
     
     private init() { }
     
     func uploadFile(url: URL) -> (resultPublisher: AnyPublisher<Void, RemoteFileError>, progressPublisher: AnyPublisher<Progress, Never>) {
         let operation = Amplify.Storage.uploadFile(key: generateFileKey(url),
                                                    local: url,
-                                                   options: generateOptions(url))
+                                                   options: generateUploadOptions(url))
         
         let resultPublisher: AnyPublisher<Void, RemoteFileError> = operation
             .resultPublisher
@@ -78,6 +80,14 @@ final class RemoteFileService {
             .eraseToAnyPublisher()
     }
     
+    func shareFile(fileKey: String, emailAddress: String) -> AnyPublisher<Void, RemoteFileError> {
+        return Amplify.API.put(request: RESTRequest.init(apiName: "MFSA-Share-API", path: "/file-resource/\(fileKey)/identity", body: emailAddress.data(using: .utf8)))
+            .resultPublisher
+            .map { (_: Data) -> Void in Void() }
+            .mapError { RemoteFileError.apiError(error: $0) }
+            .eraseToAnyPublisher()
+    }
+    
     private func getMetadata(from key: String) -> AnyPublisher<[String:String], RemoteFileError> {
         return getEscapeHatch()
             .zip(generateMetadataRequest(fileKey: key, bucketName: "mfsa-files"))
@@ -125,7 +135,7 @@ final class RemoteFileService {
         return "\(UUID().uuidString)-\(url.lastPathComponent)"
     }
     
-    private func generateOptions(_ url: URL) -> StorageUploadFileRequest.Options {
+    private func generateUploadOptions(_ url: URL) -> StorageUploadFileRequest.Options {
         return StorageUploadFileRequest.Options.init(accessLevel: .protected,
                                                      metadata: [Self.ORIGINAL_FILE_NAME_METADATA_KEY: url.lastPathComponent])
     }
