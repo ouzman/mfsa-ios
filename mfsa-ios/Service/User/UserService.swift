@@ -26,7 +26,6 @@ class UserService {
             .eraseToAnyPublisher()
     }
     
-    // func getCurrentUserSub() -> AnyPublisher<(id: String, sub: String), UserError> {
     func getCurrentUserIds() -> AnyPublisher<(String, String), UserError> {
         return Amplify.Auth.fetchAuthSession()
             .resultPublisher

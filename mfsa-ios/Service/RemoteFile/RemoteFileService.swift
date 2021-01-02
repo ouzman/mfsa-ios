@@ -16,7 +16,6 @@ final class RemoteFileService {
     private static let REGION = "eu-west-1"
     static let instance = RemoteFileService()
     
-    private var cancellables = Set<AnyCancellable>()
     
     
     private init() { }
@@ -51,7 +50,6 @@ final class RemoteFileService {
                     .map { (metadata: [String:String], ids) -> RemoteFileModel in
                         let (id, _) = ids
                         return RemoteFileModel(key: item.key,
-//                                               nativeFileKey: "protected/\(Self.REGION):\(id)/\(item.key)",
                                                nativeFileKey: "protected/\(id)/\(item.key)",
                                                fileName: metadata[Self.ORIGINAL_FILE_NAME_METADATA_KEY] ?? "",
                                                owner: nil)
@@ -129,44 +127,9 @@ final class RemoteFileService {
     func downloadSharedFile(fileKey: String, owner: String, localDirectory: URL, fileName: String) -> AnyPublisher<Void, RemoteFileError> {
         let _ = localDirectory.startAccessingSecurityScopedResource()
         
-//        self.getEscapeHatch()
-//            .flatMap { (s3) -> AnyPublisher<String, Never> in
-//                let request = AWSS3HeadObjectRequest()
-//                request?.bucket = "mfsa-files"
-//                request?.key = "protected/eu-west-1:\(owner)/\(fileKey)"
-//                s3.headObject(request!).continueWith { (task: AWSTask<AWSS3HeadObjectOutput>) -> Void in
-//                    if let result = task.result {
-//                        print(result)
-//                    } else if let error = task.error {
-//                        print(error)
-//                    } else {
-//                        print("Unknown")
-//                    }
-//                }
-//
-//                return Just("aa").eraseToAnyPublisher()
-//            }
-//            .sink { completion in
-//                switch completion {
-//                case .finished:
-//                    break
-//                case .failure(let error):
-//                    print(error)
-//                    break
-//                }
-//            } receiveValue: { _ in }
-//            .store(in: &cancellables)
-//
-        
         let operation = Amplify.Storage.downloadFile(key: fileKey,
                                                      local: localDirectory.appendingPathComponent(fileName),
                                                      options: StorageDownloadFileRequest.Options.init(accessLevel: .protected, targetIdentityId: owner))
-        operation.progressPublisher
-            .sink { (progress) in
-                print(progress)
-            }
-            .store(in: &cancellables)
-        
         return operation
             .resultPublisher
             .map { _ in
