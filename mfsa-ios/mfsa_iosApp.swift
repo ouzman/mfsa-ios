@@ -9,6 +9,7 @@ import SwiftUI
 import Amplify
 import AmplifyPlugins
 import Combine
+import AWSCore
 
 @main
 struct mfsa_iosApp: App {

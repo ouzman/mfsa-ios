@@ -15,6 +15,11 @@ struct SharedFilesView: View {
     }
     
     var body: some View {
+        let errorAlertActive = Binding<Bool>(
+            get: { self.viewModel.errorAlertDetails != nil },
+            set: { if !$0 { self.viewModel.errorAlertDetails = nil } }
+        )
+
         List {
             ForEach(self.viewModel.sharedFileList, id: \.self) { (remoteFile: RemoteFileModel) in
                 FileRow(file: FileModel(id: remoteFile.key,
@@ -23,6 +28,11 @@ struct SharedFilesView: View {
             }
         }
         .onAppear { self.viewModel.retrieveSharedFiles() }
+        .alert(isPresented: errorAlertActive, content: {
+            Alert(title: Text(self.viewModel.errorAlertDetails!.title),
+                  message: Text(self.viewModel.errorAlertDetails!.details),
+                  dismissButton: .default(Text("OK")))
+        })
     }
 }
 

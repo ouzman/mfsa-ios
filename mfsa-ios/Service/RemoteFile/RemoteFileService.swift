@@ -47,10 +47,12 @@ final class RemoteFileService {
             .mapError { RemoteFileError.storageError(error: $0) }
             .flatMap { (item: StorageListResult.Item) -> AnyPublisher<RemoteFileModel, RemoteFileError> in
                 self.getMetadata(from: item.key)
-                    .zip(UserService.instance.getCurrentUserSub().mapError { RemoteFileError.userError(error: $0) })
-                    .map { (metadata: [String:String], currentUserSub: String) -> RemoteFileModel in
+                    .zip(UserService.instance.getCurrentUserIds().mapError { RemoteFileError.userError(error: $0) })
+                    .map { (metadata: [String:String], ids) -> RemoteFileModel in
+                        let (id, _) = ids
                         return RemoteFileModel(key: item.key,
-                                               nativeFileKey: "protected/\(Self.REGION):\(currentUserSub)/\(item.key)",
+//                                               nativeFileKey: "protected/\(Self.REGION):\(id)/\(item.key)",
+                                               nativeFileKey: "protected/\(id)/\(item.key)",
                                                fileName: metadata[Self.ORIGINAL_FILE_NAME_METADATA_KEY] ?? "",
                                                owner: nil)
                     }
@@ -84,10 +86,18 @@ final class RemoteFileService {
     }
     
     func shareFile(fileKey: String, emailAddress: String) -> AnyPublisher<Void, RemoteFileError> {
-        return Amplify.API.put(request: RESTRequest.init(apiName: "MFSA-Share-API", path: "/file-resource/\(fileKey)/identity", body: emailAddress.data(using: .utf8)))
-            .resultPublisher
+        return UserService.instance.getCurrentUserIds()
+            .mapError { RemoteFileError.userError(error: $0) }
+            .flatMap { (ids) -> AnyPublisher<Data, RemoteFileError> in
+                let (id, _) = ids
+                return Amplify.API.put(request: RESTRequest.init(apiName: "MFSA-Share-API",
+                                                                 path: "/file-resource/\(fileKey)/identity",
+                                                                 body: "{ \"email\": \"\(emailAddress)\", \"owner\": \"\(id)\" }".data(using: .utf8)))
+                    .resultPublisher
+                    .mapError { RemoteFileError.apiError(error: $0) }
+                    .eraseToAnyPublisher()
+            }
             .map { (_: Data) -> Void in Void() }
-            .mapError { RemoteFileError.apiError(error: $0) }
             .eraseToAnyPublisher()
     }
     
@@ -118,9 +128,46 @@ final class RemoteFileService {
     
     func downloadSharedFile(fileKey: String, owner: String, localDirectory: URL, fileName: String) -> AnyPublisher<Void, RemoteFileError> {
         let _ = localDirectory.startAccessingSecurityScopedResource()
-        return Amplify.Storage.downloadFile(key: fileKey,
-                                            local: localDirectory.appendingPathComponent(fileName),
-                                            options: StorageDownloadFileRequest.Options.init(accessLevel: .protected, targetIdentityId: owner))
+        
+//        self.getEscapeHatch()
+//            .flatMap { (s3) -> AnyPublisher<String, Never> in
+//                let request = AWSS3HeadObjectRequest()
+//                request?.bucket = "mfsa-files"
+//                request?.key = "protected/eu-west-1:\(owner)/\(fileKey)"
+//                s3.headObject(request!).continueWith { (task: AWSTask<AWSS3HeadObjectOutput>) -> Void in
+//                    if let result = task.result {
+//                        print(result)
+//                    } else if let error = task.error {
+//                        print(error)
+//                    } else {
+//                        print("Unknown")
+//                    }
+//                }
+//
+//                return Just("aa").eraseToAnyPublisher()
+//            }
+//            .sink { completion in
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    print(error)
+//                    break
+//                }
+//            } receiveValue: { _ in }
+//            .store(in: &cancellables)
+//
+        
+        let operation = Amplify.Storage.downloadFile(key: fileKey,
+                                                     local: localDirectory.appendingPathComponent(fileName),
+                                                     options: StorageDownloadFileRequest.Options.init(accessLevel: .protected, targetIdentityId: owner))
+        operation.progressPublisher
+            .sink { (progress) in
+                print(progress)
+            }
+            .store(in: &cancellables)
+        
+        return operation
             .resultPublisher
             .map { _ in
                 let _ = localDirectory.stopAccessingSecurityScopedResource()
@@ -151,9 +198,13 @@ final class RemoteFileService {
     }
     
     private func getNativeFileKey(fileKey: String) -> AnyPublisher<String, RemoteFileError> {
-        return UserService.instance.getCurrentUserSub()
+        return UserService.instance.getCurrentUserIds()
             .mapError { RemoteFileError.userError(error: $0) }
-            .map { (sub) in "protected/\(sub)/\(fileKey)" }
+            .map { (ids) in
+                let (id, _) = ids
+                
+                return "protected/\(id)/\(fileKey)"
+            }
             .eraseToAnyPublisher()
     }
     

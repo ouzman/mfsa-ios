@@ -26,8 +26,9 @@ class UserService {
             .eraseToAnyPublisher()
     }
     
-    func getCurrentUserSub() -> AnyPublisher<String, UserError> {
-        Amplify.Auth.fetchAuthSession()
+    // func getCurrentUserSub() -> AnyPublisher<(id: String, sub: String), UserError> {
+    func getCurrentUserIds() -> AnyPublisher<(String, String), UserError> {
+        return Amplify.Auth.fetchAuthSession()
             .resultPublisher
             .mapError { UserError.authError(error: $0) }
             .flatMap { session -> Future<AuthCognitoIdentityProvider, UserError> in
@@ -39,10 +40,13 @@ class UserService {
                     }
                 }
             }
-            .flatMap { (provider: AuthCognitoIdentityProvider) -> AnyPublisher<String, UserError> in
-                return provider.getIdentityId()
-                    .publisher
+            .flatMap { (provider: AuthCognitoIdentityProvider) -> AnyPublisher<(String, String), UserError> in
+                return provider.getIdentityId().publisher
+                    .zip(provider.getUserSub().publisher)
                     .mapError { UserError.authError(error: $0) }
+                    .map { (id: String, sub: String) -> (id: String, sub: String) in
+                        return (id, sub)
+                    }
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
