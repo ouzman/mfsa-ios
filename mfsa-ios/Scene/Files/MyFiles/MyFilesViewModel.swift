@@ -59,6 +59,7 @@ final class MyFilesViewModel : ObservableObject {
     
     func deleteFile(fileKey: String) {
         RemoteFileService.instance.deleteFile(fileKey: fileKey)
+            .flatMap({ RemoteFileService.instance.deleteFileShare(fileKey: fileKey) })
             .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {

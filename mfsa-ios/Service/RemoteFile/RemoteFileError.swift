@@ -16,8 +16,7 @@ enum RemoteFileError : Error {
     case retrieveMetadataUnknownError
     case userError(error: UserError)
     case apiError(error: APIError)
-    case testError(error: Error)
-    case testUnknownError
+    case sharedFileDecodeError(error: Error)
 
     var description: String {
         get {
@@ -36,10 +35,8 @@ enum RemoteFileError : Error {
                 return error.description
             case .apiError(let error):
                 return error.errorDescription
-            case .testError(let error):
-                return error.localizedDescription
-            case .testUnknownError:
-                return "Unknown error occurred when testing"
+            case .sharedFileDecodeError(let error):
+                return "Shared file couldn't be decoded: \(error.localizedDescription)"
             }
         }
     }

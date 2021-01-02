@@ -13,6 +13,7 @@ struct RemoteFileModel: Identifiable, Hashable {
     }
     
     let key: String
+    let nativeFileKey: String
     let fileName: String
-    let metadata: [String:String]
+    let owner: String?
 }

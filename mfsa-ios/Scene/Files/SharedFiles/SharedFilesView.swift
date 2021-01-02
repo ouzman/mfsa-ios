@@ -8,15 +8,21 @@
 import SwiftUI
 
 struct SharedFilesView: View {
+    @ObservedObject var viewModel: SharedFilesViewModel
+    
+    init() {
+        self.viewModel = SharedFilesViewModel()
+    }
+    
     var body: some View {
         List {
-            FileRow(file: FileModel(id: "id",
-                                    name: "Shared File 1",
-                                    downloadAction: { print("download \($0.name)") }))
-            FileRow(file: FileModel(id: "id",
-                                    name: "Shared File 2",
-                                    downloadAction: { print("download \($0.name)") }))
+            ForEach(self.viewModel.sharedFileList, id: \.self) { (file: RemoteFileModel) in
+                FileRow(file: FileModel(id: file.key,
+                                        name: file.fileName,
+                                        downloadAction: { file in print(file) }))
+            }
         }
+        .onAppear { self.viewModel.retrieveSharedFiles() }
     }
 }
 

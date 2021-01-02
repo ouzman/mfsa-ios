@@ -13,6 +13,7 @@ import AWSS3
 
 final class RemoteFileService {
     private static let ORIGINAL_FILE_NAME_METADATA_KEY = "original-file-name"
+    private static let REGION = "eu-west-1"
     static let instance = RemoteFileService()
     
     private var cancellables = Set<AnyCancellable>()
@@ -37,7 +38,6 @@ final class RemoteFileService {
     }
     
     func listFiles() -> AnyPublisher<[RemoteFileModel], RemoteFileError> {
-        
         return Amplify.Storage.list(options: StorageListRequest.Options(accessLevel: .protected))
             .resultPublisher
             .flatMap { (result: StorageListResult) -> AnyPublisher<StorageListResult.Item, Never> in
@@ -47,10 +47,13 @@ final class RemoteFileService {
             .mapError { RemoteFileError.storageError(error: $0) }
             .flatMap { (item: StorageListResult.Item) -> AnyPublisher<RemoteFileModel, RemoteFileError> in
                 self.getMetadata(from: item.key)
-                    .map { (metadata: [String:String]) -> RemoteFileModel in
+                    .zip(UserService.instance.getCurrentUserSub().mapError { RemoteFileError.userError(error: $0) })
+                    .map { (metadata: [String:String], currentUserSub: String) -> RemoteFileModel in
                         return RemoteFileModel(key: item.key,
+                                               nativeFileKey: "protected/\(Self.REGION):\(currentUserSub)/\(item.key)",
                                                fileName: metadata[Self.ORIGINAL_FILE_NAME_METADATA_KEY] ?? "",
-                                               metadata: metadata) }
+                                               owner: nil)
+                    }
                     .eraseToAnyPublisher()
             }
             .collect()
@@ -82,6 +85,31 @@ final class RemoteFileService {
     
     func shareFile(fileKey: String, emailAddress: String) -> AnyPublisher<Void, RemoteFileError> {
         return Amplify.API.put(request: RESTRequest.init(apiName: "MFSA-Share-API", path: "/file-resource/\(fileKey)/identity", body: emailAddress.data(using: .utf8)))
+            .resultPublisher
+            .map { (_: Data) -> Void in Void() }
+            .mapError { RemoteFileError.apiError(error: $0) }
+            .eraseToAnyPublisher()
+    }
+    
+    func listSharedFiles() -> AnyPublisher<[RemoteFileModel], RemoteFileError> {
+        Amplify.API.get(request: RESTRequest.init(apiName: "MFSA-Share-API", path: "/file-resource"))
+            .resultPublisher
+            .mapError { RemoteFileError.apiError(error: $0) }
+            .flatMap { (data: Data) -> Future<[SharedFileResourceModel], RemoteFileError> in
+                return Future<[SharedFileResourceModel], RemoteFileError>() { promise in
+                    do {
+                        promise(.success(try JSONDecoder().decode([SharedFileResourceModel].self, from: data)))
+                    } catch {
+                        promise(.failure(RemoteFileError.sharedFileDecodeError(error: error)))
+                    }
+                }
+            }
+            .map { sharedFiles in sharedFiles.map { RemoteFileModel(key: $0.key, nativeFileKey: $0.nativeKey, fileName: $0.fileName, owner: $0.owner) } }
+            .eraseToAnyPublisher()
+    }
+    
+    func deleteFileShare(fileKey: String) -> AnyPublisher<Void, RemoteFileError> {
+        return Amplify.API.delete(request: RESTRequest.init(apiName: "MFSA-Share-API", path: "/file-resource/\(fileKey)"))
             .resultPublisher
             .map { (_: Data) -> Void in Void() }
             .mapError { RemoteFileError.apiError(error: $0) }
